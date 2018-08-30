@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,8 +11,9 @@
 <body>
     <form>
       <form method="get" action="">
-      <input type="text" name="first"><br />
-      <input type="text" name="last">
+      <input type="text" name="first" placeholder="First"><br />
+      <input type="text" name="last" value="LAST">
+      <input type="submit" value="go">
     </form>
 </body>
 </html>
