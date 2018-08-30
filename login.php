@@ -11,6 +11,7 @@
 
 <?php
 $username = $_GET['username'];
+$password = $GET['password'];
 ?>
 
    <body>
@@ -21,6 +22,12 @@ $username = $_GET['username'];
         <br>
         <input type="submit" value="go">
       </form>
+
+<?php
+echo "Username was " + $username;
+echo <br>;
+echo "Password was " + $password;
+?>
     </body>
 </html>
 
