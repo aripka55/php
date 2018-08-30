@@ -11,7 +11,7 @@
 
 <?php
 $username = $_GET['username'];
-$password = $GET['password'];
+$password = $_GET['password'];
 ?>
 
    <body>
