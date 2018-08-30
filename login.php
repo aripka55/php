@@ -11,8 +11,9 @@
 <body>
     <form>
       <form method="get" action="">
-      <input type="text" name="first" placeholder="First"><br />
-      <input type="text" name="last" value="LAST">
+      <input type="text" name="username" placeholder="Enter Username"><br />
+      <input type="password" name="password">
+      <br>
       <input type="submit" value="go">
     </form>
 </body>
