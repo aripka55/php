@@ -8,14 +8,19 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
 </head>
-<body>
-    <form>
-      <form method="get" action="">
-      <input type="text" name="username" placeholder="Enter Username"><br />
-      <input type="password" name="password">
-      <br>
-      <input type="submit" value="go">
-    </form>
-</body>
+
+<?php
+$username = $_GET['username'];
+?>
+
+   <body>
+      <form>
+        <form method="get" action="">
+        <input type="text" name="username" placeholder="Enter Username"><br />
+        <input type="password" name="password">
+        <br>
+        <input type="submit" value="go">
+      </form>
+    </body>
 </html>
 
