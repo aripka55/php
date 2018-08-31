@@ -20,15 +20,18 @@ $password = $_POST['password'];
         <input type="text" name="username" placeholder="Enter Username"><br />
         <input type="password" name="password">
         <br>
-        <input type="submit" value="go">
+        <input type="submit" value="GO">
       </form>
 
 <?php
 if (isset($username) && isset($password)){
-echo "Username was " . $username;
-echo "<br>";
-echo "Password was " . $password;
+    if ($username == "andrew" && $password == "password"){
+        $_SESSION['username'] = $username;
+    }
 }
+
+echo "Logged in as: " . $_SESSION['username'];
+
 ?>
     </body>
 </html>
