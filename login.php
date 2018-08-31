@@ -26,7 +26,7 @@ $password = $_POST['password'];
 <?php
 if (isset($username) && isset($password)){
 echo "Username was " . $username;
-echo <br>;
+echo "<br>";
 echo "Password was " . $password;
 }
 ?>
