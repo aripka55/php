@@ -26,7 +26,7 @@ $password = $_POST['password'];
 
 <?php
 if (isset($username) && isset($password)){
-    if ($username == "andrew" && $password = "password"){
+    if ($username == "andrew" && $password == "password"){
         $_SESSION['username'] = $username;
     }
 }
