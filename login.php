@@ -14,6 +14,9 @@
 $username = $_POST['username'];
 $password = $_POST['password'];
 
+echo $username;
+echo $password;
+
 if (isset ($_POST['logout'])){
     unset($_SESSION['username']);
 }
