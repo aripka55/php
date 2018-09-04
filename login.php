@@ -1,4 +1,4 @@
-<?php session_start() ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +22,9 @@ $password = $_POST['password'];
         <input type="password" name="password">
         <br>
         <input type="submit" value="GO">
+        <br>
+        <input type="submit" name="logout" value="logout">
+
       </form>
 
 <?php
