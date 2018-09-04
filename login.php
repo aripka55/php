@@ -23,8 +23,8 @@ if (isset ($_POST['logout'])){
 ?>
 
    <body>
-      <form>
-        <form method="post" action="">
+      
+    <form method="post" action="">
         <input type="text" name="username" placeholder="Enter Username"><br />
         <input type="password" name="password">
         <br>
