@@ -2,6 +2,12 @@
 session_start(); 
 require('dbconnection.php');
 
+if(isset ($_POST['username'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT username, password FROM users where username = $username";
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +22,7 @@ require('dbconnection.php');
 </head>
 
 <?php
-$username = $_POST['username'];
-$password = $_POST['password'];
+
 
 //echo $username;
 //echo $password;
