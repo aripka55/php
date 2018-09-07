@@ -14,7 +14,7 @@ if(isset ($_POST['username'])){
 
     // Extraction the returned query information
     while($row = $result->fetch_assoc()){
-        ($username == $row['username'] && $password == $row['password']){
+       if ($username == $row['username'] && $password == $row['password']){
             $_SESSION['username'] = $username;
         } // Closes IF statements
     } // Closes WHILE statements
@@ -56,11 +56,7 @@ if (isset ($_POST['logout'])){
       </form>
 
 <?php
-if (isset($username) && isset($password)){
-    if ($username == "andrew" && $password == "password"){
-        $_SESSION['username'] = $username;
-    }
-}
+
 
 echo "Logged in as: " . $_SESSION['username'];
 
