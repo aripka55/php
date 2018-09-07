@@ -6,8 +6,19 @@ if(isset ($_POST['username'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT username, password FROM users where username = $username";
-}
+    // SQL statment to execute. SURROUND VARIABLES WITH SINGLE QUOTES
+    $sql = "SELECT username, password FROM users where username = '$username'"; 
+
+    //Execute the SQL and return array to $result
+    $result = $conn->query($sql);
+
+    // Extraction the returned query information
+    while($row = $result->fetch_assoc()){
+        ($username == $row['username'] && $password == $row['password']){
+            $_SESSION['username'] = $username;
+        } // Closes IF statements
+    } // Closes WHILE statements
+} // Closes POST statements
 ?>
 
 <!DOCTYPE html>
