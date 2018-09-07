@@ -4,6 +4,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = $_POST['username'];
     $password = $_POST['password'];
     $sql = "INSERT INTO users (username,password) VALUES ('$username, '$password')";
+    $conn->query($sql);
 }
 
 ?>
