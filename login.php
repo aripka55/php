@@ -2,7 +2,7 @@
 session_start(); 
 require('dbconnection.php');
 
-if(isset ($_POST['username'])){
+if(isset($_POST['username'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -14,7 +14,7 @@ if(isset ($_POST['username'])){
 
     // Extraction the returned query information
     while($row = $result->fetch_assoc()){
-       if ($username == $row['username'] && password_verify($row['password'], $password)){
+       if ($username == $row['username'] && password_verify($password, $row['password'])){
             $_SESSION['username'] = $username;
         } // Closes IF statements
     } // Closes WHILE statements
