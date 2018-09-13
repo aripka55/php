@@ -1,30 +1,33 @@
-<?php 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    require('dbconnection.php');
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $password = password_hash($password, PASSWORD_BCRYPT);
-    $sql = "INSERT INTO users (username,password) VALUES ('$username, '$password')";
-    $conn->query($sql);
-}
+<?php
+//must be in caps!
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  require('dbconnection.php');
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
+  // password hash wont work on red hat till new version
+  //MD5 instentanious, bad for security - "rainbow table" = hashed guesses
+  //hash is : takes password through algorythem and brings back a hash
+  // impossible to reverse! good for security - BCRYPT "salts passwords"
+  $password = password_hash($password, PASSWORD_BCRYPT);
+  $sql = "INSERT INTO users (username,password) VALUES ('$username','$password')";
+  $conn->query($sql);
+}
 ?>
+
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    <form method="post" action="">
-        <input type="text" name="username"><br>
-        <input type="password" name="password"><br>
-        <input type="submit">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <form method="post" action="" >
+      username:<input type="text" name="username"><br>
+      password:<input type="password" name="password"><br>
+      <input type="submit">
     </form>
-    
-</body>
+
+  </body>
 </html>
