@@ -44,6 +44,11 @@ if (isset ($_POST['logout'])){
 ?>
 
    <body>
+
+   <a href="register.php">Register</a>
+   <a href="upload.php"> | Upload</a>
+   <br />
+
       
     <form method="post" action="">
         <input type="text" name="username" placeholder="Enter Username"><br />
