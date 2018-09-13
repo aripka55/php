@@ -14,7 +14,7 @@ if(isset ($_POST['username'])){
 
     // Extraction the returned query information
     while($row = $result->fetch_assoc()){
-       if ($username == $row['username'] && $password == $row['password']){
+       if ($username == $row['username'] && password_verify($row['password'], $password)){
             $_SESSION['username'] = $username;
         } // Closes IF statements
     } // Closes WHILE statements
