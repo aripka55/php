@@ -17,8 +17,18 @@ if($_FILES['upload'] != null){
     echo $target_dir . "<br>";
     $target_file = $target_dir . basename($_FILES['upload']['files']);
     echo $target_file . "<br>";
+    $uploadVerification = true;
 
-    move_uploaded_file($_FILES['upload']['tmp_name'], $target_file);
+    // Lets check to see if the file already exists
+    if (file_exists($target_file)){
+        $uploadVerification = false;
+        $ret = "Sorry file already exists!";
+    }
+
+    if ($uploadVerification) {
+        move_uploaded_file($_FILES['upload']['tmp_name'], $target_file);
+    }
+    
 }
 ?>
 
