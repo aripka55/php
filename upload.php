@@ -11,11 +11,11 @@ var_dump($_POST['upload']);
 echo "<hr />";
 var_dump($_FILES['upload']);
 
-if($_FILES['upload'] != null){
+if (isset($_FILES['upload'] != null)){
 
-    $target_dir = "upload/";
+    $target_dir = "uploads/";
     echo $target_dir . "<br>";
-    $target_file = $target_dir . basename($_FILES['upload']['files']);
+    $target_file = $target_dir . basename($_FILES['upload']['name']);
     echo $target_file . "<br>";
     $uploadVerification = true;
 
@@ -46,5 +46,5 @@ Upload your file.
 </form>
 
 <h5 style="color: red;">
-  <?php if ($ret) { echo $ret};) ?>
+  <?php if ($ret) { echo $ret; }) ?>
 </h5>
