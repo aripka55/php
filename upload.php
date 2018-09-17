@@ -23,7 +23,11 @@ if (isset($_FILES['upload'])){
         $ret = "Sorry file already exists!";
     }
 
-    if ($_FILES['upload'] ['size'] < 2000000 ){
+    // Check file for type
+    $finfo = finfo_open(FILEINFO_MIME_TYPES);
+    $file_type = finfo_file($finfo, $_FILES['upload']{'tmp_file'});
+
+    if ($_FILES['upload'] ['size'] > 2000000 ){
         $uploadVerification = false;
         $ret = "Sorry file is too big!";
     }
