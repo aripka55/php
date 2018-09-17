@@ -29,15 +29,12 @@ if (isset($_FILES['upload'])){
         case "image/jpeg";
           $uploadVerification = true;
           break;
-
         case "image/png";
           $uploadVerification = true;
           break;
-
         case "application/pdf";
           $uploadVerification = true;
           break;
-
         default;
           $uploadVerification = false;
           $ret = "sorry obly jpg, png, gif, and pdf files are allowed";
