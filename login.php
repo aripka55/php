@@ -62,8 +62,7 @@ if (isset ($_POST['logout'])){
         <input type="submit" value="Go">
         <br>
         <input type="submit" name="logout" value="Logout">
-
-      </form>
+    </form>
 
 <?php
 
