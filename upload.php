@@ -24,11 +24,26 @@ if (isset($_FILES['upload'])){
     }
 
     // Check file for type
-    $finfo = finfo_open(FILEINFO_MIME_TYPES);
-    $file_type = finfo_file($finfo, $_FILES['upload']{'tmp_file'});
-    echo $file_type;
+    $file_type = $_FILES['upload']['type'];
+    switch ($file_type){
+        case "image/jpeg";
+          $uploadVerification = true;
+          break;
 
-    if ($_FILES['upload'] ['size'] > 2000000 ){
+        case "image/png";
+          $uploadVerification = true;
+          break;
+
+        case "application/pdf";
+          $uploadVerification = true;
+          break;
+
+        default;
+          $uploadVerification = false;
+          $ret = "sorry obly jpg, png, gif, and pdf files are allowed";
+    }
+
+    if ($_FILES['upload'] ['size'] > 1000000 ){
         $uploadVerification = false;
         $ret = "Sorry file is too big!";
     }
