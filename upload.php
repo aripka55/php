@@ -13,9 +13,10 @@ var_dump($_FILES['upload']);
 
 if (isset($_FILES['upload'])){
     // Check to see if uploads folder exists
-    
+    if(!file_exists("uploads")){
     //If uploads folder does not exist, create it
-    mkdir("uploads/");
+        mkdir("uploads/");
+    }
     
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES['upload']['name']);
