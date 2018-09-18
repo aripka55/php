@@ -50,7 +50,7 @@ if (isset($_FILES['upload'])){
         $ret = "Sorry file is too big!";
     }
 
-    if ($uploadVerification) {
+    if ($uploadVerification){
         move_uploaded_file($_FILES['upload']['tmp_name'], $target_file);
     }
 }
