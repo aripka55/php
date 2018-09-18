@@ -15,7 +15,7 @@ if (isset($_FILES['upload'])){
     // Check to see if uploads folder exists
     if(!file_exists("uploads")){
     //If uploads folder does not exist, create it
-        mkdir("uploads");
+        mkdir("./uploads");
     }
     
     $target_dir = "uploads/";
@@ -35,6 +35,9 @@ if (isset($_FILES['upload'])){
           $uploadVerification = true;
           break;
         case "image/png";
+          $uploadVerification = true;
+          break;
+        case "image/gif";
           $uploadVerification = true;
           break;
         case "application/pdf";
