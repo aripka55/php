@@ -3,19 +3,20 @@
 if (!isset($_SESSION)) {
   session_start();
 }
-//if username not in database, will move them to login page
+
+// If username is not in the database, it will move them to the login page
 if (!isset($_SESSION['username'])) {
-  //die("Don't even try mate");
-  //before html cant but put at bottom, must be at top
-  //when you use header you need 'location: then where you are going to'
+  // Die("Don't even try mate");
+  // Before HTML can't but put at bottom, must be at top
+  // When you use header you need 'location: then where you are going to'
   header('Location: login.php'); //if you wanted https address you need full url
 }
-//takes whatever this is and tells you about it, good for trouble shooting
-var_dump($_FILES['upload']);
 
+// Takes whatever this is and tells you about it, good for trouble shooting
+var_dump($_FILES['upload']);
 echo"<hr />";
 //post could have been changed from php 5 to 7
-var_dump($_POST['upload']); //trouble shooting wrong statement
+var_dump($_POST['upload']); // Trouble shooting wrong statement
 
 //use ctrl / to auto comment by line
 
