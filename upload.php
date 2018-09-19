@@ -28,6 +28,10 @@ if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
     mkdir("./uploads"); // ./ is the root directory
   }
 
+  if(!file_exists("uploads/" . $_SESSION['username'])){
+
+  }
+
 
 
   $target_dir = "uploads/";
