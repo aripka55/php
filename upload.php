@@ -60,9 +60,6 @@ switch ($file_type) {
   case 'application/pdf':
     $uploadVerify = true;
     break;
-  case 'application/docx';
-    $uploadVerify = true;
-    break;
   default:
     $uploadVerify = false;
     $ret = "sorry only jpeg, gif, png, and pdf files allowed";
