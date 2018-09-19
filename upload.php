@@ -29,7 +29,7 @@ if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
   }
 
   if(!file_exists("uploads/" . $_SESSION['username'])){
-    mkdir("uploads/" . $_SESSION['username']);
+    mkdir("uploads/" . $_SESSION['username'],0777,true);
   }
 
   $target_dir = "uploads/" . $_SESSION['username'];
