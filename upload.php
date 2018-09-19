@@ -32,8 +32,6 @@ if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
     mkdir("uploads/" . $_SESSION['username']);
   }
 
-
-
   $target_dir = "uploads/";
   $target_file = $target_dir . basename($_FILES['upload']['name']);
   $uploadVerify = true;
