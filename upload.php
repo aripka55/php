@@ -1,72 +1,100 @@
-<?php 
-if (!isset($_SESSION)){
-    session_start();
+<?php
+//checks to see if session is started
+if (!isset($_SESSION)) {
+  session_start();
 }
-
-if (!isset($_SESSION['username'])){
-    header('Location: login.php');
+//if username not in database, will move them to login page
+if (!isset($_SESSION['username'])) {
+  //die("Don't even try mate");
+  //before html cant but put at bottom, must be at top
+  //when you use header you need 'location: then where you are going to'
+  header('Location: login.php'); //if you wanted https address you need full url
 }
-
-var_dump($_POST['upload']);
-echo "<hr />";
+//takes whatever this is and tells you about it, good for trouble shooting
 var_dump($_FILES['upload']);
 
-if (isset($_FILES['upload'])){
-    // Check to see if uploads folder exists
-    if(!file_exists("uploads")){
-    //If uploads folder does not exist, create it
-        mkdir("./uploads");
-    }
-    
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES['upload']['name']);
-    $uploadVerification = true;
+echo"<hr />";
+//post could have been changed from php 5 to 7
+var_dump($_POST['upload']); //trouble shooting wrong statement
 
-    // Lets check to see if the file already exists
-    if (file_exists($target_file)){
-        $uploadVerification = false;
-        $ret = "Sorry file already exists!";
-    }
+//use ctrl / to auto comment by line
 
-    // Check file for type
-    $file_type = $_FILES['upload']['type'];
-    switch ($file_type){
-        case "image/jpeg";
-          $uploadVerification = true;
-          break;
-        case "image/png";
-          $uploadVerification = true;
-          break;
-        case "image/gif";
-          $uploadVerification = true;
-          break;
-        case "application/pdf";
-          $uploadVerification = true;
-          break;
-        default;
-          $uploadVerification = false;
-          $ret = "sorry obly jpg, png, gif, and pdf files are allowed";
-    }
+//code for uploading file, will work after post data is sent
+if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
+  //check to if uploads folder exists
+  if (!file_exists("uploads")){
+    //if uploads folder(directory) dose not exist create it
+    mkdir("uploads/");
+  }
 
-    if ($_FILES['upload'] ['size'] > 1000000 ){
-        $uploadVerification = false;
-        $ret = "Sorry file is too big!";
-    }
+  $target_dir = "uploads/";
+  $target_file = $target_dir . basename($_FILES['upload']['name']);
 
-    if ($uploadVerification){
-        move_uploaded_file($_FILES['upload']['tmp_name'], $target_file);
-    }
+$uploadVerify = true;
+
+//lets check to see if the file already exists
+
+//variables are global
+if (file_exists($target_file)) {
+  $uploadVerify = false;
+  $ret = "Sorry file already exists";
 }
-?>
 
-Upload your file.
+//check file for type
+$file_type = $_FILES['upload']['type'];
 
-<form action="" method="post" enctype="multipart/form-data">
-    <input type="file" name="upload">
-    <br />
-    <input type="submit">
-</form>
+switch ($file_type) {
+  case 'image/jpeg':
+    $uploadVerify = true;
+    break;
 
-<h5 style="color: red;">
-  <?php if ($ret) { echo $ret; }) ?>
-</h5> -->
+  case 'image/png':
+    $uploadVerify = true;
+    break;
+
+  case 'image/gif':
+    $uploadVerify = true;
+    break;
+
+  case 'application/pdf':
+    $uploadVerify = true;
+    break;
+
+  default:
+    $uploadVerify = false;
+    $ret = "sorry only jpeg, gif, png, and pdf files allowed";
+    break;
+}
+
+
+//php has file upload limit of 2mb by default
+if ($_FILES['upload']['size'] > 1000000 ) {
+  $uploadVerify = false;
+  $ret = "Sorry file too big";
+}
+
+//if set value has value can be used as true w/o conditions
+if ($uploadVerify) {
+  //moves files
+    move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file);
+}
+}
+
+
+ ?>
+
+ Upload your file.
+<br />
+ <!--info on w3schools-->
+ <form action="" method="post" enctype="multipart/form-data">
+   <input type="file" name="upload">
+ <br />
+ <br />
+ <input type="submit">
+
+ </form>
+
+ <h5 style="color:red;">
+   <?php if ($ret) { echo $ret; } ?>
+</h5>
+
