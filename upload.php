@@ -29,8 +29,7 @@ if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
 
   $target_dir = "uploads/";
   $target_file = $target_dir . basename($_FILES['upload']['name']);
-
-$uploadVerify = true;
+  $uploadVerify = true;
 
 //lets check to see if the file already exists
 
@@ -47,25 +46,20 @@ switch ($file_type) {
   case 'image/jpeg':
     $uploadVerify = true;
     break;
-
   case 'image/png':
     $uploadVerify = true;
     break;
-
   case 'image/gif':
     $uploadVerify = true;
     break;
-
   case 'application/pdf':
     $uploadVerify = true;
     break;
-
   default:
     $uploadVerify = false;
     $ret = "sorry only jpeg, gif, png, and pdf files allowed";
     break;
 }
-
 
 //php has file upload limit of 2mb by default
 if ($_FILES['upload']['size'] > 1000000 ) {
@@ -75,7 +69,7 @@ if ($_FILES['upload']['size'] > 1000000 ) {
 
 //if set value has value can be used as true w/o conditions
 if ($uploadVerify) {
-  //moves files
+    //moves files
     move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file);
 }
 }
