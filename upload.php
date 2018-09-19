@@ -1,5 +1,5 @@
 <?php
-//checks to see if session is started
+// Check to see if session is started
 if (!isset($_SESSION)) {
   session_start();
 }
