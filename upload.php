@@ -34,13 +34,13 @@ if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
 
 // Lets check to see if the file already exists
 
-// Variables are global
+// Vupdaariables are global
 if (file_exists($target_file)) {
   $uploadVerify = false;
   $ret = "Sorry file already exists";
 }
 
-//check file for type
+// Check file for type
 $file_type = $_FILES['upload']['type'];
 
 switch ($file_type) {
@@ -62,7 +62,7 @@ switch ($file_type) {
     break;
 }
 
-//php has file upload limit of 2mb by default
+// PHP has file upload limit of 2mb by default
 if ($_FILES['upload']['size'] > 1000000 ) {
   $uploadVerify = false;
   $ret = "Sorry file too big";
