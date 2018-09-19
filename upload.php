@@ -25,7 +25,7 @@ if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
   // Check to see if uploads folder exists
   if (!file_exists("uploads")){
     // If uploads folder(directory) dose not exist create it
-    mkdir("uploads/");
+    mkdir("./uploads");
   }
 
   $target_dir = "uploads/";
