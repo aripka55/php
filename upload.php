@@ -68,9 +68,9 @@ if ($_FILES['upload']['size'] > 1000000 ) {
   $ret = "Sorry file too big";
 }
 
-//if set value has value can be used as true w/o conditions
+// If set value has value can be used as true w/o conditions
 if ($uploadVerify) {
-    //moves files
+    // Moves files
     move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file);
 }
 }
