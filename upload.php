@@ -22,9 +22,9 @@ var_dump($_POST['upload']); // Trouble shooting wrong statement
 
 // Code for uploading file, will work after post data is sent
 if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
-  //check to if uploads folder exists
+  // Check to see if uploads folder exists
   if (!file_exists("uploads")){
-    //if uploads folder(directory) dose not exist create it
+    // If uploads folder(directory) dose not exist create it
     mkdir("uploads/");
   }
 
@@ -32,9 +32,9 @@ if (isset($_FILES['upload']) ){ //could use != null after ] instead of isset
   $target_file = $target_dir . basename($_FILES['upload']['name']);
   $uploadVerify = true;
 
-//lets check to see if the file already exists
+// Lets check to see if the file already exists
 
-//variables are global
+// Variables are global
 if (file_exists($target_file)) {
   $uploadVerify = false;
   $ret = "Sorry file already exists";
