@@ -45,18 +45,18 @@ $conn->close();
 
     <?php
     // Loop through all table records
-while($row = $result->fetch_assoc()){
-  echo "<tr>";
-  echo "<td>" . $row['userid'] . "</td>";
-  echo "<td>" . $row['username'] . "</td>";
-  echo "<td>" . $row['password'] . "</td>";
-  echo "<td>
+    while($row = $result->fetch_assoc()){
+      echo "<tr>";
+        echo "<td>" . $row['userid'] . "</td>";
+        echo "<td>" . $row['username'] . "</td>";
+        echo "<td>" . $row['password'] . "</td>";
+        echo "<td>
             <form action=\"\" method=\"post\">
                 <input name=\"id\" type=\"hidden\" value=\"" . $row['userid'] . "\">
                 <input type=\"submit\" value=\"delete\" name=\"delete\">
             </form> </td>";
-  echo "</tr>";
-}
+      echo "</tr>";
+    }
 ?>
 </table>
 
