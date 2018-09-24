@@ -57,8 +57,8 @@ $conn->close();
             </form> </td>";
       echo "</tr>";
     }
-?>
+    ?>
 </table>
 
-</body>
+  </body>
  </html>
