@@ -17,10 +17,10 @@ if (isset($_POST['id']) && isset($_POST['delete'])){
     $result = $conn->query($sql);
 }
 
-//create the sql Query
+// Create the SQL query
 $sql = "SELECT * from users;";
 
-//exacute the sql query
+// Execute the SQL query
 $result = $conn->query($sql);
 
 //close db connection
