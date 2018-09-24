@@ -23,7 +23,7 @@ $sql = "SELECT * from users;";
 // Execute the SQL query
 $result = $conn->query($sql);
 
-//close db connection
+// Close db connection
 $conn->close();
  ?>
 
