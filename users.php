@@ -1,9 +1,10 @@
 <?php
-// check to see if session is started
+// Check to see if session has started
 if (!isset($_SESSION)) {
   session_start();
 }
-//if username not logged in, will move them to login page
+
+// If username not logged in, will move them to login page
 if (!isset($_SESSION['username'])) {
    header('Location: login.php');
 }
