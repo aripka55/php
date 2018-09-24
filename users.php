@@ -27,8 +27,8 @@ $result = $conn->query($sql);
 $conn->close();
  ?>
 
- <!DOCTYPE html>
- <html lang="en" dir="ltr">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
      <title></title>
@@ -36,15 +36,15 @@ $conn->close();
    <body>
 
 <table>
-<tr>
-  <!--key names-->
-  <th>User id </th>
-  <th>Username </th>
-  <th>Password Hash</th>
-<tr>
+    <tr>
+        <!--key names-->
+        <th>User Id </th>
+        <th>Username </th>
+        <th>Password Hash</th>
+    <tr>
 
-<?php
-//loop through all table records
+    <?php
+    // Loop through all table records
 while($row = $result->fetch_assoc()){
   echo "<tr>";
   echo "<td>" . $row['userid'] . "</td>";
