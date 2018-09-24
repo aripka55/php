@@ -10,13 +10,14 @@ if (!isset($_SESSION['username'])) {
 
 //bring in database connections
 //remember if your connection page is named different change
-require('dbConnect.php');
+require('dbconnection.php');
 
 //create the sql Query
 $sql = "SELECT * from users;";
 
 //exacute the sql query
 $result = $conn->query($sql);
+
 //close db connection
 $conn->close();
  ?>
@@ -45,6 +46,8 @@ while($row = $result->fetch_assoc()){
   echo "<td>" . $row['username'] . "</td>";
   echo "<td>" . $row['password'] . "</td>";
   echo "</tr>";
+            <form action==\"\" method=\"post\>
+                <input name=\"id\" type=\"hidden\" value=\"" . $row['user'];
 }
 ?>
 </table>
