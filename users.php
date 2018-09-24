@@ -4,13 +4,12 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-// If username not logged in, will move them to login page
+// If user is not logged in, send them to login page
 if (!isset($_SESSION['username'])) {
    header('Location: login.php');
 }
 
-//bring in database connections
-//remember if your connection page is named different change
+// Bring in database connection
 require('dbconnection.php');
 
 if (isset($_POSt['id']) && isset($_POST['delete'])){
