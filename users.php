@@ -12,6 +12,11 @@ if (!isset($_SESSION['username'])) {
 //remember if your connection page is named different change
 require('dbconnection.php');
 
+if (isset($_POSt['id']) && isset($_POST['delete'])){
+    $sql = "DELETE FROM users WHERE userid = " $_POST['userid'];
+    $result = $conn->query($sql);
+}
+
 //create the sql Query
 $sql = "SELECT * from users;";
 
@@ -45,9 +50,12 @@ while($row = $result->fetch_assoc()){
   echo "<td>" . $row['userid'] . "</td>";
   echo "<td>" . $row['username'] . "</td>";
   echo "<td>" . $row['password'] . "</td>";
+  echo "<td>
+            <form action=\"\" method=\"post\">
+                <input name=\"id\" type=\"hidden\" value=\"" . $row['userid'] . "\">
+                <input type=\"submit\" value=\"delete\" name=\"delete\">
+            </form> </td>";
   echo "</tr>";
-            <form action==\"\" method=\"post\>
-                <input name=\"id\" type=\"hidden\" value=\"" . $row['user'];
 }
 ?>
 </table>
