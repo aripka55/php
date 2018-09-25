@@ -20,6 +20,8 @@ if (isset($_GET['id']) && $_GET['edit']=="edit") {
     echo "<input name=\"username\" type=\"text\"  value=\"" . $row['username'] . "\">";
     echo "<br />";
     echo "<input name=\"password\" type=\"text\"  value=\"" . $row['password'] . "\">";
+    echo "<br /">;
+    echo "<input type=\"submit\" name=\"submit\">";
   }
 
 
