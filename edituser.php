@@ -18,7 +18,8 @@ if (isset($_GET['id']) && $_GET['edit']="edit"){
     while ($row = $result->fetch_assoc()){
         echo "<input type=\"text\" disabled value=\"$row['userid']\">"
     }
-    
+
 } else{
     echo "You should net be here.";
 }
+?>
