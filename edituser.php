@@ -31,6 +31,11 @@ if (isset($_GET['id']) && $_GET['edit']=="edit") {
   echo "You should not be here.";
 }
 
+if (isset($_POST['username']) && $_POSt['submit'] == "Change"){
+  $sql = "UPDATE users SET username = " . $_POST['name'] . "WHERE userid = " . $_GET['id'] . ";";
+  $conn->query($sql);
+}
+
 
 
 
