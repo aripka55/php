@@ -7,6 +7,14 @@ if (!isset($_SESSION['username'])){
   header('Location: login.php');
 }
 
+if (isset($_POST['submit'])){
+  $userid = $_POST['updateuserid'];
+  $username = $_POST['updateusername'];
+  $password = $_POST['updatepassword'];
+  $update = "UPDATE users SET userid='$userid', username='$username', password='$password', WHERE userid = ".$userid;
+  $conn->query($update) or die("Cannot update");
+}
+
 if (isset($_GET['id']) && $_GET['edit']=="edit") {
   require('dbconnection.php'); //bring in database connection
   $sql = "SELECT * from users where userid = " . $_GET['id']; //id is int datatype don't quote it
