@@ -7,12 +7,15 @@ if (!isset($_SESSION['username'])){
   header('Location: login.php');
 }
 
-if (isset($_POST['submit'])){
-  $userid = $_POST['updateuserid'];
-  $username = $_POST['updateusername'];
-  $password = $_POST['updatepassword'];
-  $update = "UPDATE users SET userid='$userid', username='$username', password='$password', WHERE userid = ".$userid;
-  $conn->query($update) or die("Cannot update");
+// Check to see if there is any post info...it would come from the change form
+if (isset($_POST)){
+require('dbconnection.php'); //bring in database connection
+$userid = $_POST['userid'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$sql = "UPDATE users set username = \"$username\", password = \"$password\" WHERE userid = $userid";
+$result = $conn->query($sql);
+
 }
 
 if (isset($_GET['id']) && $_GET['edit']=="edit") {
@@ -20,10 +23,12 @@ if (isset($_GET['id']) && $_GET['edit']=="edit") {
   $sql = "SELECT * from users where userid = " . $_GET['id']; //id is int datatype don't quote it
   $result = $conn->query($sql);
 
-  echo "<form action=\"\" method=\"post\">";
+
+  echo "<form action=\"?userid=\" method=\"post\">";
 
   while ($row = $result->fetch_assoc()) {
-    echo "<input name=\"userid\" type=\"text\" disabled value=\"" . $row['userid'] . "\">";
+    echo "<input type=\"text\" disabled value=\"" . $row['userid'] . "\">";
+    echo "<input name=\"userid\" type=\"hidden\" value=\"" . $row['userid'] . "\">";
     echo "<br />";
     echo "<input name=\"username\" type=\"text\" value=\"" . $row['username'] . "\">";
     echo "<br />";
@@ -37,11 +42,6 @@ if (isset($_GET['id']) && $_GET['edit']=="edit") {
 
 } else {
   echo "You should not be here.";
-}
-
-if (isset($_POST['username']) && $_POSt['submit'] == "Change"){
-  $sql = "UPDATE users SET username = " . $_POST['name'] . "WHERE userid = " . $_GET['id'] . ";";
-  $conn->query($sql);
 }
 
 
