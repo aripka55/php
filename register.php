@@ -22,17 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title></title>
   </head>
   <body>
-
-   <a href = "register.php">Register</a>
-     <?php
-     if (isset($_SESSION['username'])) {
-     echo "<a href =\"upload.php\"> | Upload </a>";
-     }
-     if (isset($_SESSION['username'])) {
-     echo "<a href =\"users.php\"> | Users </a>";
-     }
-      ?>
-
     <form method="post" action="" >
       username:<input type="text" name="username"><br>
       password:<input type="password" name="password"><br>
