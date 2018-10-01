@@ -35,6 +35,16 @@ $conn->close();
   </head>
   <body>
 
+   <a href = "register.php">Register</a>
+     <?php
+     if (isset($_SESSION['username'])) {
+     echo "<a href =\"upload.php\"> | Upload </a>";
+     }
+     if (isset($_SESSION['username'])) {
+     echo "<a href =\"users.php\"> | Users </a>";
+     }
+      ?>
+
     <table>
       <tr>
         <th>User Id</th>
@@ -42,6 +52,8 @@ $conn->close();
         <th>Password Hash</th>
         <th>Actions</th>
       </tr>
+
+
 
       <?php
       //Loop through all table records
