@@ -7,6 +7,13 @@ if (!isset($_SESSION['username'])){
   header('Location: login.php');
 }
 
+if (isset($_SESSION['username'])) {
+  echo "<a href =\"upload.php\">  Upload </a>";
+  }
+  if (isset($_SESSION['username'])) {
+  echo "<a href =\"users.php\"> | Users </a>";
+  }
+
 // Check to see if there is any post info...it would come from the change form
 if (isset($_POST)){
 require('dbconnection.php'); //bring in database connection
