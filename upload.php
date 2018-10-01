@@ -12,6 +12,8 @@ if (!isset($_SESSION['username'])) {
   header('Location: login.php'); // If you wanted HTTPS address you need full URL
 }
 
+require('navbar.php');
+
 // Takes whatever this is and tells you about it, good for trouble shooting
 var_dump($_FILES['upload']);
 echo"<hr />";
