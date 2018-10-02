@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $sql = "INSERT INTO users (username,password) VALUES ('$username','$password')";
   $conn->query($sql);
 }
+require ('navbar.php');
+echo "<hr />";
+echo "<br />";
 ?>
 
 <!DOCTYPE html>
