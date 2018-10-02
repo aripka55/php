@@ -15,10 +15,10 @@ require('navbar.php');
 echo "<hr />";
 
 // Takes whatever this is and tells you about it, good for trouble shooting
-var_dump($_FILES['upload']);
-echo"<hr />";
+//var_dump($_FILES['upload']);
+//echo"<hr />";
 // Post could have been changed from php 5 to 7
-var_dump($_POST['upload']); // Trouble shooting wrong statement
+//var_dump($_POST['upload']); // Trouble shooting wrong statement
 
 // Use ctrl / to auto comment by line
 
