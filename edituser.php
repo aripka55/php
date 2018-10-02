@@ -7,6 +7,10 @@ if (!isset($_SESSION['username'])){
   header('Location: login.php');
 }
 
+require('navbar.php');
+echo "<hr />";
+echo "<br />";
+
 if (isset($_SESSION['username'])) {
   echo "<a href =\"upload.php\">  Upload </a>";
   }
