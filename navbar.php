@@ -11,8 +11,8 @@ if(!isset($_SESSION)){
 //these options only appear if user is logged in
  if(isset($_SESSION['username'])){
    echo " | ";
-   echo basename($_SERVER['PHP_SELF']) == "upload.php"? "<a href=\"upload.php\"><strong>Upload an Image</strong></a>" : "<a href=\"upload.php\">Upload an Image</a>";
+   echo basename($_SERVER['PHP_SELF']) == "upload.php"? "<a href=\"upload.php\"><strong>Upload</strong></a>" : "<a href=\"upload.php\">Upload an Image</a>";
    echo " | ";
-   echo basename($_SERVER['PHP_SELF']) == "users.php"? "<a href=\"users.php\"><strong>View Site Users</strong><a/>" : "<a href=\"users.php\">View Site Users<a/>";
+   echo basename($_SERVER['PHP_SELF']) == "users.php"? "<a href=\"users.php\"><strong>Users</strong><a/>" : "<a href=\"users.php\">View Site Users<a/>";
  }
   ?>
