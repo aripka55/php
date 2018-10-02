@@ -45,21 +45,35 @@ if (isset ($_POST['logout'])){
 
    <body>
 
-    <a href="register.php">Register</a>
-    
-    <?php
-    if(isset($_SESSION['username'])){
-        echo "<a href=\"upload.php\"> | Upload</a>";
-    }
+    <body>
 
-    if(isset($_SESSION['username'])){
-        echo "<a href=\"users.php\"> | Users</a>";
-    }
-    
-    ?>
-    <br />
+<!--<a href="register.php">Register Here</a>-->
 
-      
+<?php
+// if (isset($_SESSION['username'])){
+//     echo "<a href=\"upload.php\"> | Upload an Image</a>";
+//
+// }
+//
+// if (isset($_SESSION['username'])){
+//     echo "<a href=\"users.php\"> | View Site Users</a>";
+//
+// }
+
+// echo "<a href=\"login.php\">Login/Logout</a>";
+// echo "<a href=\"register.php\"> | Register</a>";
+//
+// if (isset($_SESSION['username'])){
+//   echo "<a href=\"upload.php\"> | Upload an Image</a>";
+//   echo "<a href=\"users.php\"> | View Site Users<a/>";
+// }
+
+//brings in content from navbar page
+require('navbar.php');
+
+echo "<hr />";
+echo "<br />";
+ ?>
     <form method="post" action="">
         <input type="text" name="username" placeholder="Enter Username"><br />
         <input type="password" name="password">
