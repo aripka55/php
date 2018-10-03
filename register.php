@@ -2,7 +2,22 @@
 //must be in caps!
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   require('dbconnection.php');
+  // Grab Post data...could be dangerous because of XSS or SQL injection
   $username = $_POST['username'];
+  // Sanitize the $username by remove tags
+   //sanitize the username by removing tags
+   $username = filter_var($username, FILTER_SANITIZE_STRING);
+
+   //trim any white space from beginning and end of username - 
+   $username = trim($username);
+
+   //remove slashes // or \\ from username - not allowed
+   $username = stripslashes($username);
+
+   //remove spaces
+   $username = str_replace(' ', '',$username); //first parameter is string to look for and second parameter is the replacement
+
+  // Grab Post data... password will be hashed so no need to sanitize
   $password = $_POST['password'];
 
   // password hash wont work on red hat till new version
