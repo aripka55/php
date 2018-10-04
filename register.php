@@ -12,10 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    $username = trim($username);
 
    //remove slashes // or \\ from username - not allowed
-   $username = stripslashes($username);
+   //$username = stripslashes($username);
+   $username = str_replace("/", "", $username);
+   $username = str_replace("//", "", $username);
 
    //remove spaces
-   $username = str_replace(' ', '',$username); //first parameter is string to look for and second parameter is the replacement
+   //$username = str_replace(' ', '',$username); //first parameter is string to look for and second parameter is the replacement
+   $username = preg_replace("/\s+/", "", $username);
 
   // Grab Post data... password will be hashed so no need to sanitize
   $password = $_POST['password'];
