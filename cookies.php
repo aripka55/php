@@ -21,7 +21,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
         echo "You have been here before";
     } else {
         echo "This is your first time here";
-        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+        //setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
     }
     ?>
 </body>
