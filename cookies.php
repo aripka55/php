@@ -3,6 +3,8 @@ $cookie_name = "user";
 $cookie_value ="John Doe";
 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 // 86400 = 1 day
+$lastvisit_cookie = "lastvisit";
+$lastvisit_cookie_value = date("F j, Y, g:i a");
 ?>
 
 <!DOCTYPE html>
