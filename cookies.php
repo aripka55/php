@@ -17,13 +17,18 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 </head>
 <body>
     <?php
-    if(isset($_COOKIE['user'])) {
-        echo "You have been here before";
+    if(isset($_COOKIE['user']) && (isset ($_COOKIE['lastvisit']))) {
+        $lastvisit = $_COOKIE['lastvisit'];
+        echo "You have been here before. The last time you were here was " . $lastvisit;
+        setcookie($lastvisit_cookie, $lastvisit_cookie_value, 31536000 + time(), "/");
     } else {
         echo "This is your first time here";
         //setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+        // Last time they visited the page.... tomorrows assignment
+
     }
     setcookie($cookie_name, $cookie_value, time() + (60), "/");
+    setcookie($lastvisited_cookie, $lastvisit_cookie_val, 31536000 + time(), "/");
     ?>
 </body>
 </html>
