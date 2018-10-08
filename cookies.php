@@ -21,6 +21,10 @@ if (isset($_COOKIE['last_visit'])){
   </head>
   <body>
     <h2>
-      <?php echo $notification; ?>
+      <?php
+      echo $notification;
+      echo ($last_visit != "")? "<br /> Last Visit: " . $last_visit : "";
+      ?>
+
     </h2>
   </body>
