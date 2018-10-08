@@ -1,30 +1,59 @@
 <?php
-$cookie_name = "last_visit";
-$cookie_value = date("l jS \of F Y h:i:s A");
 
-if (isset($_COOKIE['last_visit'])){
-  $notification = "You have been here within the last 30 days";
-  $last_visit = $_COOKIE['last_visit'];
-  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
-} else {
-  $notification = "This is your first time here, or it's been more than 30 days";
-  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
-}
+$cookie_name="user";
+$cookie_value="bob";
 
+
+
+//setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // this is equal to one day
 ?>
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h2>
-      <?php
-      echo $notification;
-      echo ($last_visit != "")? "<br /> Last Visit: " . $last_visit : "";
-      ?>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
 
-    </h2>
-  </body>
+ <?php
+   //check to see if cookie has already been set
+        if (isset($_COOKIE['user'])) {
+
+            $lastVisit = $_COOKIE['user'];
+
+            $timeElapsed = date() - $_COOKIE['lastVisit'];
+
+            $timeElapsed->format('%s');
+
+                        // Last Visit Date
+
+            echo "Greetings Mate! <br> The last time you were here was on: " . $timeElapsed;
+
+
+
+          } else {
+
+            echo "Hello Mate! I see this is the first time you have been here.";
+
+            //set the cookie info - 86400 is one day. This can be changed to year, months etc...
+            //a year would be  = 31536000 + time()
+            //months could be set like this $inTwoMonths = 60 * 60 * 24 * 60 + time();
+
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+            setcookie('lastVisit', date("G:i - m/d/y"), time() + (86400 * 30), "/");
+
+          }
+
+        setcookie($cookie_name, $cookie_value, time() + (60), "/"); // this expires the cookie
+
+
+
+    ?>
+</body>
+</html>
