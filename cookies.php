@@ -1,17 +1,30 @@
 <?php
-$cookie_name = "last_visit";
-$cookie_value = date("l jS \of F Y h:i:s A");
+$cookie_name = "lastVisit";
+$cookie_value = date("l jS \of F Y h:i:s A");// l -day of the week
+$seconds = $lastVisit / 60;
 
-if (isset($_COOKIE['last_visit'])){
-  $notification = "You have been here within the last 30 days";
-  $last_visit = $_COOKIE['last_visit'];
+//setcookie($cookie_name,$cookie_value, time() + (86400*30), "/");
+//86400 = 1 day
+//$inTwoMonths = 60 * 60 * 24 * 60 + time();
+//setcookie('user', date("G:i - m/d/y"), $inTwoMonths);
+//this adds one year to the current time, for the cookie expiration
+//$year = 31536000 + time() ;
+//setcookie(user, time (), $year);
+
+// Checking if the cookie is set
+if (isset($_COOKIE['lastVisit'])) {
+  $notification = "AH-HA Mate, You have been here before. You just can't stay away.";
+  $lastVisit = $_COOKIE['lastVisit'];
   setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 } else {
-  $notification = "This is your first time here, or it's been more than 30 days";
+  $notification = "Welcome Mate!!! I see this is your first visit";
   setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 }
 
-?>
+if ($seconds <= 60) {
+  $notification = "Last time you were here Mate was " . (time() $lastVisit) . " seconds ago";
+}
+ ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -20,11 +33,11 @@ if (isset($_COOKIE['last_visit'])){
     <title></title>
   </head>
   <body>
-    <h2>
+    <p>
       <?php
-      echo $notification;
-      echo ($last_visit != "")? "<br /> Last Visit: " . $last_visit : "";
-      ?>
-
-    </h2>
+          echo $notification;
+          echo ($lastVisit != "")? "<br /> Last time you came to see me mate: " . $lastVisit : "";
+       ?>
+    </p>
   </body>
+</html>
