@@ -4,16 +4,18 @@ echo "$output";
 
 $pwd = shell_exec('pwd');
 echo "<pre>$pwd</pre>";
-?>
 
-<?php
-$filename = "/var/www/html/andrew/php/test";
-
-if (file_exists($filename)) {
-    echo "$filename does exist";
-} else {
-    echo "$filename does not exist";
-} else {
+$file_test = file_exists("test");
+  if ($file_test) {
+    $folder_test = is_dir("test");
+    if ($folder_test) {
+      echo "test exists, and is a folder";
+    } else {
+      echo "test exists and is a file";
+    }
+  } else {
     mkdir("test");
-}
+  }
+
+
 ?>
