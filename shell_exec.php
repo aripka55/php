@@ -13,5 +13,7 @@ if (file_exists($filename)) {
     echo "$filename does exist";
 } else {
     echo "$filename does not exist";
+} else {
+    mkdir("test");
 }
 ?>
