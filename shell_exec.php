@@ -12,6 +12,10 @@ $file_test = file_exists("test");
     $folder_test = is_dir("test");
     if ($folder_test) {
       echo "test exists, and is a folder";
+
+      $testarray = scandir("test/");
+      var_dump($testarray);
+
     } else {
       echo "test exists and is a file";
     }
