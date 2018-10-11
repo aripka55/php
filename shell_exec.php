@@ -4,7 +4,8 @@ echo "$output";
 
 $pwd = shell_exec('pwd');
 echo "<pre>$pwd</pre>";
-
+?>
+<?php
 $file_test = file_exists("test");
   if ($file_test) {
     $folder_test = is_dir("test");
