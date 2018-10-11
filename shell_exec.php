@@ -4,17 +4,21 @@ echo "$output";
 
 $pwd = shell_exec('pwd');
 echo "<pre>$pwd</pre>";
-?>
 
-<?php
 $file_test = file_exists("test");
   if ($file_test) {
     $folder_test = is_dir("test");
     if ($folder_test) {
       echo "test exists, and is a folder";
 
-      $testarray = scandir("test/");
-      var_dump($testarray);
+      $testArray = scandir("test/");
+      //var_dump($testArray);
+
+      foreach ($testArray as $key => $value) {
+        // code...
+        if ($value == "." || $value == "..") { continue; }
+        echo $value . "<br />";
+      }
 
     } else {
       echo "test exists and is a file";
