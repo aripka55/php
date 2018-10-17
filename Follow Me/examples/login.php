@@ -18,8 +18,6 @@ if (isset($_POST['email'])){
 if (isset($_SESSION['email'])) {
     header('location: profile.php');
 }
-
-
 ?>
 
 <!doctype html>
