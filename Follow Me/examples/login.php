@@ -1,75 +1,80 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+session_start();
 require('database.php');
-// grab post data, can be dangerous because of XSS or MySQL Injection
-$email = $_POST['email'];
-// sanitize the $username by removing tags
-$email = filter_var($email, FILTER_SANITIZE_STRING);
-// trim any whitespace from beginning and end of $username
-$email = trim($email);
-// take off the lashes in an inout box
-// $username = stripslashes($username);
-$email = str_replace("/", "", $email);
-$email = str_replace("\\", "", $email);
-// take off blank spaces within the username
-// $username = str_replace(' ','',$username);
-$email = preg_replace("/\s+/", "", $email); // defeats Jake's Taboo
-// grab post data...password will be hashed, so no need to sanitize
-$password = $_POST['password'];
-$password = password_hash($password, PASSWORD_BCRYPT);
-$sql = "INSERT INTO fm_users (email,password) VALUES ('$email','$password')";
-$conn->query($sql);
 
-header('Location: login_fm.php');
+if (isset($_POST['email'])) {
+  $username = $_POST['email'];
+  $password = $_POST['password'];
+
+  $sql = "SELECT email, password FROM fm_users WHERE email = '$email'";
+
+// Return array to $result
+  $result = $conn->query($sql);
+
+// Extracting the returned query information
+  while ($row = $result->fetch_assoc()) {
+    if ($email == $row['email'] && password_verify($password, $row['password'])) {
+      $_SESSION['email'] = $email;
+    }
+  }
 }
+header('Location: landing.html');
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Paper Kit 2 by Creative Tim!</title>
+        <title>Paper Kit 2 by Creative Tim</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-	<!-- Bootstrap core CSS     -->
-	<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+        <!-- Bootstrap core CSS     -->
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-	<!--  CSS for Demo Purpose, don't include it in your project     -->
-	<link href="../assets/css/demo.css" rel="stylesheet" />
+        <!--  CSS for Demo Purpose, don't include it in your project     -->
+        <link href="../assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-	<link href="../assets/css/nucleo-icons.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+        <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
 
 </head>
+
+<?php
+
+if (isset($_POST['logout'])) {
+  unset($_SESSION['email']);
+}
+?>
+
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-transparent">
         <div class="container">
-			<div class="navbar-translate">
-	            <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-bar"></span>
-					<span class="navbar-toggler-bar"></span>
-					<span class="navbar-toggler-bar"></span>
-	            </button>
-	            <a class="navbar-brand" href="https://www.creative-tim.com">Paper Kit 2</a>
-			</div>
-			<div class="collapse navbar-collapse" id="navbarToggler">
-	            <ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-	                    <a href="../index.html" class="nav-link"><i class="nc-icon nc-layout-11"></i>Components</a>
-	                </li>
-	                <li class="nav-item">
-	                    <a href="../documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-book-bookmark"></i>  Documentation</a>
-	                </li>
-					<li class="nav-item">
+                        <div class="navbar-translate">
+                    <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-bar"></span>
+                                        <span class="navbar-toggler-bar"></span>
+                                        <span class="navbar-toggler-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://www.creative-tim.com">Paper Kit 2</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                            <a href="../index.html" class="nav-link"><i class="nc-icon nc-layout-11"></i>Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-book-bookmark"></i>  Documentation</a>
+                        </li>
+                                        <li class="nav-item">
                         <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
                             <i class="fa fa-twitter"></i>
                             <p class="d-lg-none">Twitter</p>
@@ -93,9 +98,9 @@ header('Location: login_fm.php');
                             <p class="d-lg-none">GitHub</p>
                         </a>
                     </li>
-	            </ul>
-	        </div>
-		</div>
+                    </ul>
+                </div>
+                </div>
     </nav>
     <div class="wrapper">
         <div class="page-header" style="background-image: url('../assets/img/login-image.jpg');">
@@ -104,24 +109,24 @@ header('Location: login_fm.php');
                     <div class="row">
                         <div class="col-lg-4 ml-auto mr-auto">
                             <div class="card card-register">
-                                <h3 class="title">Welcome</h3>
-								<div class="social-line text-center">
+                                <h3 class="title">Login</h3>
+                                                                <div class="social-line text-center">
                                     <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
                                         <i class="fa fa-facebook-square"></i>
                                     </a>
                                     <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
                                         <i class="fa fa-google-plus"></i>
                                     </a>
-									<a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
-										<i class="fa fa-twitter"></i>
-									</a>
+                                                                        <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                                                                                <i class="fa fa-twitter"></i>
+                                                                        </a>
                                 </div>
-                                <form class="register-form">
+                                <form class="register-form" method="post" action="">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" placeholder="Email">
+                                    <input type="text" name="email" class="form-control" placeholder="Email">
 
                                     <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" name="password" class="form-control" placeholder="Password">
                                     <button class="btn btn-danger btn-block btn-round">Login</button>
                                 </form>
                                 <div class="forgot">
@@ -130,9 +135,9 @@ header('Location: login_fm.php');
                             </div>
                         </div>
                     </div>
-					<div class="footer register-footer text-center">
-						<h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim</h6>
-					</div>
+                                        <div class="footer register-footer text-center">
+                                                <h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Aaron</h6>
+                                        </div>
                 </div>
         </div>
     </div>
