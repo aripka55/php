@@ -1,25 +1,25 @@
 <?php
-session_start();
-require('database.php');
+ session_start();
+   require('dbconnection.php');
 
-if (isset($_POST['email'])) {
-  $username = $_POST['email'];
-  $password = $_POST['password'];
+if (isset($_POST['email'])){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $sql = "SELECT email, password FROM fm_users where email = '$email'";
+    $result = $conn->query($sql);
 
-// SQL statement to execute
-  $sql = "SELECT email, password FROM fm_users WHERE email = '$email'";
-
-// Returning array to $result
-  $result = $conn->query($sql);
-
-// Extracting the returned query information
-  while ($row = $result->fetch_assoc()) {
-    if ($email == $row['email'] && password_verify($password, $row['password'])) {
-      $_SESSION['email'] = $email;
+    while ($row = $result->fetch_assoc()){
+    if ($email == $row['email'] && password_verify($password, $row['password'])){
+    $_SESSION['email'] = $email;
     }
-  }
 }
-header('Location: landing.html');
+}
+
+if (isset($_SESSION['email'])) {
+    header('location: profile.php');
+}
+
+
 ?>
 
 <!doctype html>
@@ -48,14 +48,6 @@ header('Location: landing.html');
         <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
 
 </head>
-
-<?php
-
-if (isset($_POST['logout'])) {
-  unset($_SESSION['email']);
-}
-?>
-
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-transparent">
         <div class="container">
@@ -122,22 +114,22 @@ if (isset($_POST['logout'])) {
                                                                                 <i class="fa fa-twitter"></i>
                                                                         </a>
                                 </div>
-                                <form class="register-form" method="post" action="">
+                                <form class="register-form">
                                     <label>Email</label>
-                                    <input type="text" name="email" class="form-control" placeholder="Email">
+                                    <input type="text" class="form-control" placeholder="Email">
 
                                     <label>Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" placeholder="Password">
                                     <button class="btn btn-danger btn-block btn-round">Login</button>
                                 </form>
                                 <div class="forgot">
-                                    <a href="#" class="btn btn-link btn-danger">Forgot your Password?</a>
+                                    <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                                         <div class="footer register-footer text-center">
-                                                <h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Aaron</h6>
+                                                <h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim</h6>
                                         </div>
                 </div>
         </div>
