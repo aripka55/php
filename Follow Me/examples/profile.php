@@ -63,11 +63,13 @@
         <div class="section profile-content">
             <div class="container">
                 <div class="owner">
+                    <!-- when user logs in, pull their image url with url image
+                        MODIFY FM USERS-->
                     <div class="avatar">
                         <img src="<?php echo $_SESSION['image_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                     </div>
                     <div class="name">
-                        <h4 class="title">Jane Faker<br /></h4>
+                        <h4 class="title"><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?><br /></h4>
 						<h6 class="description">Music Producer</h6>
                     </div>
                 </div>
