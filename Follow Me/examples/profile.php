@@ -1,6 +1,7 @@
 <?php
 // Start session
 // Uses $_SESSION['email']; to display navigation
+// Modify FM users image URL... store/load it to $_SESSION image URL
 ?>
 
 <!doctype html>
@@ -63,7 +64,7 @@
             <div class="container">
                 <div class="owner">
                     <div class="avatar">
-                        <img src="../assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                        <img src="<?php echo $_SESSION['image_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                     </div>
                     <div class="name">
                         <h4 class="title">Jane Faker<br /></h4>
