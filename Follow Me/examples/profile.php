@@ -1,3 +1,8 @@
+<?php
+// Start session
+// Uses $_SESSION['email']; to display navigation
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
