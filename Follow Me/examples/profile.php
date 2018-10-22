@@ -41,13 +41,13 @@ session_start();
                 </button>
                 <a class="navbar-brand" href="#">FOLLOW ME</a>
             </div>
-                                        <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav ml-auto">
-                                                         <li class="nav-item">  <a href="login.php" class="nav-link">Log In</a> </li>
-                                                          <li class="nav-item"> <a href="#" class="nav-link"><?php echo $_SESSION['email']; ?></a></li>
-            </ul>
-                            </div>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">  <a href="login.php" class="nav-link">Log In</a> </li>
+                    <li class="nav-item"> <a href="#" class="nav-link"><?php echo $_SESSION['email']; ?></a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
     <div class="wrapper">
