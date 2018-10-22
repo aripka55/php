@@ -13,13 +13,13 @@
 ?>
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
         <title>Follow Me</title>
 
