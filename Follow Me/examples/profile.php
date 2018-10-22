@@ -1,27 +1,19 @@
 <?php
-//start session
-
-//uses $_SESSION['email'] to display navigation
-
-//Modify fm_users table to include profile image url -- load it to $_SESSION['imgurl']
-
-//Modify fm_users table to include first_name, last_name $_SESSION['first_name'] ['last_name']
-
-//Modify fm_users table to include a title $_SESSION['title']
-
-//Modify fm_users table to include a description $_SESSION['description']
-?>
-
-
-<!DOCTYPE html>
+session_start();
+//require('login.php');
+//uses session_email to disp email in navig
+//modify fm_users to include profile_pic url, store it to S_session image url
+//first name, last name
+ ?>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Follow Me</title>
+        <title>Profile Page</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -43,25 +35,19 @@
     <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
         <div class="container">
                         <div class="navbar-translate">
-                    <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-bar"></span>
-                                        <span class="navbar-toggler-bar"></span>
-                                        <span class="navbar-toggler-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Follow Me</a>
+          <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-bar"></span>
+                                                <span class="navbar-toggler-bar"></span>
+                                                <span class="navbar-toggler-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FOLLOW ME</a>
                         </div>
-                        <div class="collapse navbar-collapse" id="navbarToggler">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="login.php" class="nav-link">Login</a>
-                    </li>
-                    <li class="nav-item">
-                            <a href="#" class="nav-link">
-                            <?php echo $_SESSION['email']; ?>
-                        </a>
-                        </li>
-                    </ul>
-                </div>
+                                        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav ml-auto">
+                                                         <li class="nav-item">  <a href="login.php" class="nav-link">Log In</a> </li>
+                                                          <li class="nav-item"> <a href="#" class="nav-link"><?php echo $_SESSION['email']; ?></a></li>
+            </ul>
+                            </div>
                 </div>
     </nav>
 
@@ -72,19 +58,17 @@
         <div class="section profile-content">
             <div class="container">
                 <div class="owner">
-
-            <!--when user logs in, pull their image sql with url image
-                MODIFY FM_USERS TABLE TO INCLUDE URL OF PROFILE PIC-->
-                        <img src="<?php echo $_SESSION['image_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    <div class="avatar">
+                        <img src="<?php echo $_SESSION['image'];?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                     </div>
                     <div class="name">
-                        <h4 class="title"><?php echo $_SESSION['first_name'] . "" . $_SESSION['last_name']; ?>Jane Faker<br /></h4>
-                                                <h6 class="description"><?php echo $_SESSION['title']; ?></h6>
+                        <h4 class="title"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname'] ?> <br /></h4>
+                                                            <h6 class="description"><?php echo $_SESSION['title'];?></h6>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 ml-auto mr-auto text-center">
-                        <p><?php echo $_SESSION['description']; ?> </p>
+                  <div class="col-md-6 ml-auto mr-auto text-center">
+                    <p><?php echo $_SESSION['desc']; ?> </p>
                         <br />
                         <btn class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Settings</btn>
                     </div>
@@ -117,7 +101,7 @@
                                                 <h6>Flume<br/><small>Musical Producer</small></h6>
                                             </div>
                                             <div class="col-md-3 col-sm-2  ml-auto mr-auto">
-                                                                                                <div class="form-check">
+                                                                                                            <div class="form-check">
                                                                         <label class="form-check-label">
                                                                             <input class="form-check-input" type="checkbox" value="" checked>
                                                                             <span class="form-check-sign"></span>
