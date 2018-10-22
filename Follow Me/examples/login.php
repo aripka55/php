@@ -12,7 +12,9 @@
     $_SESSION['email'] = $email;
 
       }
+
     }
+
  }
 
   if (isset($_SESSION['email'])) {
