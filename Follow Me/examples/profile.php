@@ -75,7 +75,7 @@
 
             <!--when user logs in, pull their image sql with url image
                 MODIFY FM_USERS TABLE TO INCLUDE URL OF PROFILE PIC-->
-                        <img src="<?php echo $_SESSION['img_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                        <img src="<?php echo $_SESSION['image_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                     </div>
                     <div class="name">
                         <h4 class="title"><?php echo $_SESSION['first_name'] . "" . $_SESSION['last_name']; ?>Jane Faker<br /></h4>

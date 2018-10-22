@@ -2,22 +2,26 @@
  session_start();
    require('dbconnection.php');
 
-if (isset($_POST['email'])){
+  if (isset($_POST['email'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
     $sql = "SELECT email, password FROM fm_users where email = '$email'";
     $result = $conn->query($sql);
-
     while ($row = $result->fetch_assoc()){
-    if ($email == $row['email'] && password_verify($password, $row['password'])){
+    if ($email == $row['email'] && password_verify($password, $row['password']) ){
     $_SESSION['email'] = $email;
-    }
-}
-}
 
-if (isset($_SESSION['email'])) {
+      }
+
+    }
+
+ }
+
+  if (isset($_SESSION['email'])) {
     header('location: profile.php');
-}
+  }
+
+
 ?>
 
 <!doctype html>
