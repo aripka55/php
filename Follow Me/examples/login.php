@@ -1,27 +1,33 @@
-<?php
- session_start();
-   require('dbconnection.php');
+<?php //setting up the database connection
+session_start();
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+        $db_host = 'localhost'; // database is installed on php server
+        $db_user = 'lev'; // name to login to mysql
+        $db_password = 'southhills#'; // password
+        $db_name = 'lev'; //name of db
+        $conn = new mysqli($db_host,$db_user,$db_password,$db_name);
+        if ($conn->connect_error){ die("Connection failed: ". $conn->connect_error);}
+}
 
-  if (isset($_POST['email'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $sql = "SELECT email, password FROM fm_users where email = '$email'";
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $sql="SELECT email, password FROM fm_users WHERE email = '$email'";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()){
-    if ($email == $row['email'] && password_verify($password, $row['password']) ){
-    $_SESSION['email'] = $email;
-
+      if (($email == $row['email']) && password_verify($password, $row['password']))
+                        {
+        $_SESSION['email'] = $email;//used to authenticate our session to stay logged in;
+        $loggedIn=true;
+                                header('Location: profile.php');
       }
-
     }
-
- }
-
-  if (isset($_SESSION['email'])) {
-    header('location: profile.php');
+                //
   }
 
-
+if (isset($_SESSION['email'])) { $loggedIn=true; header('Location: profile.php');}
 ?>
 
 <!doctype html>
@@ -104,7 +110,7 @@
                     <div class="row">
                         <div class="col-lg-4 ml-auto mr-auto">
                             <div class="card card-register">
-                                <h3 class="title">Login</h3>
+                                <h3 class="title">Welcome</h3>
                                                                 <div class="social-line text-center">
                                     <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
                                         <i class="fa fa-facebook-square"></i>
@@ -116,13 +122,13 @@
                                                                                 <i class="fa fa-twitter"></i>
                                                                         </a>
                                 </div>
-                                <form class="register-form">
+                                <form class="register-form" method="post">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" placeholder="Email">
+                                    <input type="text" name="email" class="form-control" placeholder="Email">
 
                                     <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="Password">
-                                    <button class="btn btn-danger btn-block btn-round">Login</button>
+                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                                    <input type="submit" value="Login" button class="btn btn-danger btn-block btn-round"></button>
                                 </form>
                                 <div class="forgot">
                                     <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
