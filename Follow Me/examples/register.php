@@ -193,17 +193,11 @@ session_start();
 
 
 <!-- Core JS Files -->
-
 <script src="../assets/js/jquery-3.2.1.js" type="text/javascript"></script>
-
 <script src="../assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
-
 <script src="../assets/js/tether.min.js" type="text/javascript"></script>
-
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-
-
 <!--  Paper Kit Initialization snd functons -->
-
 <script src="../assets/js/paper-kit.js?v=2.0.1"></script>
+</html>
