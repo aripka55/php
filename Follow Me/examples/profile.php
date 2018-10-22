@@ -1,81 +1,90 @@
 <?php
-// Start session
-// Uses $_SESSION['email']; to display navigation
-// Modify FM users image URL... store/load it to $_SESSION image URL
+//start session
+
+//uses $_SESSION['email'] to display navigation
+
+//Modify fm_users table to include profile image url -- load it to $_SESSION['imgurl']
+
+//Modify fm_users table to include first_name, last_name $_SESSION['first_name'] ['last_name']
+
+//Modify fm_users table to include a title $_SESSION['title']
+
+//Modify fm_users table to include a description $_SESSION['description']
 ?>
+
 
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Follow Me by Andrew</title>
+        <title>Follow Me</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-	<!-- Bootstrap core CSS     -->
-	<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+        <!-- Bootstrap core CSS     -->
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-	<!--  CSS for Demo Purpose, don't include it in your project     -->
-	<link href="../assets/css/demo.css" rel="stylesheet" />
+        <!--  CSS for Demo Purpose, don't include it in your project     -->
+        <link href="../assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-	<link href="../assets/css/nucleo-icons.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+        <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
 
 </head>
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
         <div class="container">
-			<div class="navbar-translate">
-	            <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-bar"></span>
-					<span class="navbar-toggler-bar"></span>
-					<span class="navbar-toggler-bar"></span>
-	            </button>
-	            <a class="navbar-brand" href="#">Follow Me</a>
-			</div>
-			<div class="collapse navbar-collapse" id="navbarToggler">
-	            <ul class="navbar-nav ml-auto">
-	                <li class="nav-item">
-	                    <a href="login.php" class="nav-link">Login</a>
+                        <div class="navbar-translate">
+                    <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-bar"></span>
+                                        <span class="navbar-toggler-bar"></span>
+                                        <span class="navbar-toggler-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Follow Me</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="login.php" class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
-	                    <a href="#" class="nav-link">
+                            <a href="#" class="nav-link">
                             <?php echo $_SESSION['email']; ?>
                         </a>
-	                </li>
-	            </ul>
-	        </div>
-		</div>
+                        </li>
+                    </ul>
+                </div>
+                </div>
     </nav>
 
     <div class="wrapper">
         <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
-			<div class="filter"></div>
-		</div>
+                        <div class="filter"></div>
+                </div>
         <div class="section profile-content">
             <div class="container">
                 <div class="owner">
-                    <!-- when user logs in, pull their image url with url image
-                        MODIFY FM USERS-->
-                    <div class="avatar">
-                        <img src="<?php echo $_SESSION['image_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+
+            <!--when user logs in, pull their image sql with url image
+                MODIFY FM_USERS TABLE TO INCLUDE URL OF PROFILE PIC-->
+                        <img src="<?php echo $_SESSION['img_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                     </div>
                     <div class="name">
-                        <h4 class="title"><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?><br /></h4>
-						<h6 class="description">Music Producer</h6>
+                        <h4 class="title"><?php echo $_SESSION['first_name'] . "" . $_SESSION['last_name']; ?>Jane Faker<br /></h4>
+                                                <h6 class="description"><?php echo $_SESSION['title']; ?></h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 ml-auto mr-auto text-center">
-                        <p>An artist of considerable range, Jane Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+                        <p><?php echo $_SESSION['description']; ?> </p>
                         <br />
                         <btn class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Settings</btn>
                     </div>
@@ -108,12 +117,12 @@
                                                 <h6>Flume<br/><small>Musical Producer</small></h6>
                                             </div>
                                             <div class="col-md-3 col-sm-2  ml-auto mr-auto">
-												<div class="form-check">
-					                                <label class="form-check-label">
-					                                    <input class="form-check-input" type="checkbox" value="" checked>
-					                                    <span class="form-check-sign"></span>
-					                                </label>
-					                            </div>
+                                                                                                <div class="form-check">
+                                                                        <label class="form-check-label">
+                                                                            <input class="form-check-input" type="checkbox" value="" checked>
+                                                                            <span class="form-check-sign"></span>
+                                                                        </label>
+                                                                    </div>
                                             </div>
                                         </div>
                                     </li>
@@ -127,12 +136,12 @@
                                                 <h6>Banks<br /><small>Singer</small></h6>
                                             </div>
                                             <div class="col-md-3 col-sm-2">
-												<div class="form-check">
-					                                <label class="form-check-label">
-					                                    <input class="form-check-input" type="checkbox" value="">
-					                                    <span class="form-check-sign"></span>
-					                                </label>
-					                            </div>
+                                                                                                <div class="form-check">
+                                                                        <label class="form-check-label">
+                                                                            <input class="form-check-input" type="checkbox" value="">
+                                                                            <span class="form-check-sign"></span>
+                                                                        </label>
+                                                                    </div>
                                             </div>
                                         </div>
                                     </li>
@@ -148,7 +157,7 @@
             </div>
         </div>
     </div>
-	<footer class="footer section-dark">
+        <footer class="footer section-dark">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
