@@ -128,9 +128,8 @@ if (isset($_POST['email'])){
                                             <i class="fa fa-google-plus"></i>
                                         </a>
                                         <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
-
                                             <i class="fa fa-twitter"></i>
-                                            </a>
+                                        </a>
                                     </div>
                                     <form class="register-form" method="post" action="">
                                         <label>Email</label>
