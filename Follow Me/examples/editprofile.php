@@ -87,10 +87,10 @@ require('dbconnection.php');
                                     </div>
                                 </div>
                                 <label>Message</label>
-                                <textarea class="form-control" rows="4" placeholder="Tell us your thoughts and feelings..."></textarea>
+                                <textarea class="form-control" rows="4" placeholder="Tell everyone a little about you..."></textarea>
                                 <div class="row">
                                     <div class="col-md-4 ml-auto mr-auto">
-                                        <button class="btn btn-danger btn-lg btn-fill">Send Message</button>
+                                        <button class="btn btn-danger btn-lg btn-fill">Update</button>
                                     </div>
                                 </div>
                             </form>
