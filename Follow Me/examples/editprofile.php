@@ -59,7 +59,7 @@ require('dbconnection.php');
         <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
             <div class="filter"></div>
         </div>
-
+<!-- Keep in touch message for website -->
                    <div class="section landing-section">
                 <div class="container">
                     <div class="row">
