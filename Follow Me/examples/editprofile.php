@@ -1,7 +1,8 @@
 <?php
-//start session
+// Start Session if it is not running
 session_start();
 require('dbconnection.php');
+
 //uses $_SESSION['email'] to display navigation
 
 //Modify fm_users table to include profile image url -- load it to $_SESSION['image_url']
