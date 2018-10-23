@@ -49,11 +49,11 @@ session_start();
             </div>
         </div>
     </nav>
-
+    
     <div class="wrapper">
         <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
-                        <div class="filter"></div>
-                </div>
+            <div class="filter"></div>
+        </div>
         <div class="section profile-content">
             <div class="container">
                 <div class="owner">
@@ -62,9 +62,9 @@ session_start();
                     </div>
                     <div class="name">
                         <h4 class="title"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname'] ?> <br /></h4>
-                                                            <h6 class="description"><?php echo $_SESSION['title'];?></h6>
+                        <h6 class="description"><?php echo $_SESSION['title'];?></h6>
                     </div>
-                </div>
+                </div>*******************************************
                 <div class="row">
                   <div class="col-md-6 ml-auto mr-auto text-center">
                     <p><?php echo $_SESSION['desc']; ?> </p>
