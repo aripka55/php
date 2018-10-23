@@ -60,7 +60,7 @@ require('dbconnection.php');
             <div class="filter">
         </div>
 
-        <div class="section landing-section">
+                   <div class="section landing-section">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto">
@@ -98,7 +98,7 @@ require('dbconnection.php');
                     </div>
                 </div>
             </div>
-        </div>      
+        </div>    
 
 
     </div>
