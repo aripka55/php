@@ -16,14 +16,14 @@ require('dbconnection.php');
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- Bootstrap core CSS     -->
+    <!--Bootstrap core CSS-->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <!--CSS for Demo Purpose, don't include it in your project-->
     <link href="../assets/css/demo.css" rel="stylesheet" />
 
-    <!--     Fonts and icons     -->
+    <!--Fonts and icons-->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
@@ -84,12 +84,11 @@ require('dbconnection.php');
 <!-- Core JS Files -->
 <script src="../assets/js/jquery-3.2.1.js" type="text/javascript"></script>
 <script src="../assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
+
 <!-- <script src="../assets/js/tether.min.js" type="text/javascript"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-
 <!--  Paper Kit Initialization snd functons -->
 <script src="../assets/js/paper-kit.js?v=2.1.0"></script>
-
 </html>
