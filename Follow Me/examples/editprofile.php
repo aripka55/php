@@ -99,9 +99,6 @@ require('dbconnection.php');
                 </div>
             </div>
         </div>    
-
-
-    </div>
     <footer class="footer section-dark">
         <div class="container">
             <div class="row">
