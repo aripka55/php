@@ -1,5 +1,7 @@
 <?php
-//Start Session if it is not running
+// Start Session if it is not running
+session_start();
+require("db_connection.php");
 //Add name attributes to form elements
 //Set default values for each form element from $_SESSION
 //Update submitted values to database
