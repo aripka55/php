@@ -59,46 +59,47 @@ require('dbconnection.php');
         <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
             <div class="filter"></div>
         </div>
-<!-- Keep in touch message for website -->
-                   <div class="section landing-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 ml-auto mr-auto">
-                            <h2 class="text-center">Keep in touch?</h2>
-                            <form class="contact-form">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Name</label>
-										<div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            <i class="nc-icon nc-single-02"></i>
-	                                        </span>
-	                                        <input type="text" class="form-control" placeholder="Name">
-	                                    </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Email</label>
-										<div class="input-group">
-											<span class="input-group-addon">
-												<i class="nc-icon nc-email-85"></i>
-											</span>
-											<input type="text" class="form-control" placeholder="Email">
-										</div>
-                                    </div>
+        
+        <!-- Keep in touch message for website -->
+        <div class="section landing-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h2 class="text-center">Keep in touch?</h2>
+                        <form class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                    <div class="input-group">
+	                                    <span class="input-group-addon">
+	                                        <i class="nc-icon nc-single-02"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Name">
+	                                </div>
                                 </div>
-                                <label>Description</label>
-                                <textarea class="form-control" rows="4" placeholder="Tell everyone a little about you..."></textarea>
-                                <div class="row">
-                                    <div class="col-md-4 ml-auto mr-auto">
-                                        <button class="btn btn-danger btn-lg btn-fill">Update</button>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                    <div class="input-group">
+										<span class="input-group-addon">
+											<i class="nc-icon nc-email-85"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Email">
+									</div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                            <label>Description</label>
+                            <textarea class="form-control" rows="4" placeholder="Tell everyone a little about you..."></textarea>
+                            <div class="row">
+                                <div class="col-md-4 ml-auto mr-auto">
+                                    <button class="btn btn-danger btn-lg btn-fill">Update</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
+    </div>    
     <footer class="footer section-dark">
         <div class="container">
             <div class="row">
