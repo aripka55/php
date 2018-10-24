@@ -35,86 +35,81 @@
 
 <body>
   <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
-    <div class="container">
-        <div class="navbar-translate">
-            <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-bar"></span>
-                <span class="navbar-toggler-bar"></span>
-                <span class="navbar-toggler-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Follow Me</a>
+      <div class="container">
+          <div class="navbar-translate">
+              <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-bar"></span>
+                  <span class="navbar-toggler-bar"></span>
+                  <span class="navbar-toggler-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Follow Me</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="login.php" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <?php echo $_SESSION['email']; ?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <?php echo $_SESSION['email']; ?>
-                    </a>
-                </li>
-            </ul>
-                </div>
-                </div>
     </nav>
-
+    
     <div class="wrapper">
-      <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
-                          <div class="filter"></div>
-                  </div>
+        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
+            <div class="filter">
+            </div>
+        </div>
+        <div class="section landing-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h2 class="text-center">Edit Profile</h2>
+                        <form class="contact-form" action="" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>First Name:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="nc-icon nc-single-02"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Last Name:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="nc-icon nc-single-02"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Last Name">
+                                    </div>
+                                </div>
+                            </div> <!--Ends First Row -->
 
-      <div class="section landing-section">
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-8 ml-auto mr-auto">
-                      <h2 class="text-center">Edit Profile</h2>
-                      <form class="contact-form" action="" method="post">
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <label>First Name:</label>
-                                  <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="nc-icon nc-single-02"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="First Name">
-                                  </div>
-                              </div>
-
-                              <div class="col-md-6">
-                                  <label>Last Name:</label>
-                                  <div class="input-group">
-                                    <span class="input-group-addon">
-                                      <i class="nc-icon nc-single-02"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Last Name">
-                                  </div>
-                              </div>
-                          </div> <!--Ends First Row -->
-
-
-                          <label>Title:</label>
-                          <div class="input-group">
-                            <span class="input-group-addon">
-                              <i class="nc-icon nc-tag-content"></i>
-                            </span>
-                            <input type="text" class="form-control" placeholder="Title">
-                          </div>
-
-                          <label>Description:</label>
-                          <textarea class="form-control" rows="4" placeholder="Tell everyone a little about you..."></textarea>
-                          <div class="row">
-                            <div class="col-md-4 ml-auto mr-auto text-center">
-                              <button class="btn btn-danger btn-lg btn-fill">Update</button>
+                            <label>Title:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="nc-icon nc-tag-content"></i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Title">
                             </div>
-                          </div>
-
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
-
+                            <label>Description:</label>
+                            <textarea class="form-control" rows="4" placeholder="Tell everyone a little about you..."></textarea>
+                            <div class="row">
+                                <div class="col-md-4 ml-auto mr-auto text-center">
+                                    <button class="btn btn-danger btn-lg btn-fill">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
         <footer class="footer section-dark">
