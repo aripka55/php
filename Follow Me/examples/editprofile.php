@@ -2,7 +2,7 @@
 // Start Session if it is not running
 session_start();
 require("db_connection.php");
-    $sql ="UPDATE fm_users SET firstname='".$_POST['firstname']."', lastname='".$_POST['lastname']."', title='".$_POST['title']."', descr='".$_POST['descr']."' WHERE userid = " . $_SESSION['userid'];
+    $sql ="UPDATE fm_users SET firstname='".$_POST['firstname']."', lastname='".$_POST['lastname']."', title='".$_POST['title']."', description='".$_POST['description']."' WHERE userid = " . $_SESSION['userid'];
     $result = $conn->query($sql);
     $sql="SELECT * FROM fm_users WHERE userid = " . $_SESSION['userid'];
     $result = $conn->query($sql);
@@ -12,11 +12,10 @@ require("db_connection.php");
             $_SESSION['firstname'] = $row['firstname'];
             $_SESSION['lastname'] = $row['lastname'];
             $_SESSION['title'] = $row['title'];
-            $_SESSION['descr'] = $row['descr'];
+            $_SESSION['describe'] = $row['description'];
             header('Location: profile.php');
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
