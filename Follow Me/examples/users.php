@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_SESSION)){
-        session_start(); //Start session_start
+    session_start(); //Start session_start
 }
 //Uses the $_SESSION['email'] POST variable to display the email in the nav bar at the top (Welcome $_SESSION['image_url'])
 
@@ -25,25 +25,26 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
     $description=$_POST['description'];
 
     $email=$_SESSION['email'];
-    require('sitedbconn.php');
+    require('dbconnection.php');
     $updatedb="UPDATE fm_users SET first_name=\"" .  $first_name . "\", last_name=\"" . $last_name .  "\", title=\"" . $title . "\", description=\"" . $description . "\" WHERE email = \"" . $email . "\"";
     
     $conn->query($updatedb);
-        $sql = "SELECT * FROM fm_users WHERE email = '$email'";
-        $result = $conn->query($sql);
+    $sql = "SELECT * FROM fm_users WHERE email = '$email'";
+    $result = $conn->query($sql);
 
-        while ($row = $result->fetch_assoc()){
-            //$_SESSION['email'] = $email;
-            $_SESSION['first_name'] = $row['first_name'];
-            $_SESSION['last_name'] = $row['last_name'];
-            $_SESSION['description'] = $row['description'];
-            $_SESSION['title'] = $row['title'];
-            //$_SESSION['image_url'] = $row['image_url'];
-        }
-        header('Location: profile.php');
+    while ($row = $result->fetch_assoc()){
+        //$_SESSION['email'] = $email;
+        $_SESSION['first_name'] = $row['first_name'];
+        $_SESSION['last_name'] = $row['last_name'];
+        $_SESSION['description'] = $row['description'];
+        $_SESSION['title'] = $row['title'];
+        //$_SESSION['image_url'] = $row['image_url'];
+    }
+    header('Location: profile.php');
 }
+
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
         <meta charset="utf-8" />
