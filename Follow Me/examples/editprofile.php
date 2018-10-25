@@ -2,17 +2,17 @@
 // Start Session if it is not running
 session_start();
 require("db_connection.php");
-    $sql ="UPDATE fm_users SET firstname='".$_POST['firstname']."', lastname='".$_POST['lastname']."', title='".$_POST['title']."', description='".$_POST['description']."' WHERE userid = " . $_SESSION['userid'];
+    $sql ="UPDATE fm_users SET first_name='".$_POST['first_name']."', last_name='".$_POST['last_name']."', title='".$_POST['title']."', description='".$_POST['description']."' WHERE userid = " . $_SESSION['userid'];
     $result = $conn->query($sql);
     $sql="SELECT * FROM fm_users WHERE userid = " . $_SESSION['userid'];
     $result = $conn->query($sql);
        
     while ($row = $result->fetch_assoc()) {
         if (($_SESSION['userid'] == $row['userid'])) {
-            $_SESSION['firstname'] = $row['firstname'];
-            $_SESSION['lastname'] = $row['lastname'];
+            $_SESSION['first_name'] = $row['first_name'];
+            $_SESSION['last_name'] = $row['last_name'];
             $_SESSION['title'] = $row['title'];
-            $_SESSION['describe'] = $row['description'];
+            $_SESSION['description'] = $row['description'];
             header('Location: profile.php');
         }
     }
