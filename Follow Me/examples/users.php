@@ -1,9 +1,49 @@
 <?php
-//Start Session if it is not running
+
+if (!isset($_SESSION)){
+        session_start(); //Start session_start
+}
+//Uses the $_SESSION['email'] POST variable to display the email in the nav bar at the top (Welcome $_SESSION['image_url'])
+
+//Modify fm_users to image_url...load it to the $_SESSION['email'] variable
+
+//Modify the fm_users table to include first and last name....Use the session variable first name and last name
+//Modify fm_users to add title and then load it to the $_SESSION['title']
+//Modify fm_users to add description and then load it to the $_SESSION['description']
+
+
+
+//Start the session if not running///
 //Add name attributes to form elements
 //Set default values for each form element from $_SESSION
-//Update submitted values to database
-//Upldate submitted values to $_SESSION
+//Update submitted values to SQLiteDatabase
+//Update submitted value to $_SESSION
+if (isset($_SESSION['email']) && isset($_POST['savebutton']))   {
+        $first_name=$_POST['first_name'];
+        $last_name=$_POST['last_name'];
+        $title=$_POST['title'];
+        $description=$_POST['description'];
+
+        $email=$_SESSION['email'];
+        require('sitedbconn.php');
+        $updatedb="UPDATE fm_users SET first_name=\"" .  $first_name . "\", last_name=\"" . $last_name .  "\", title=\"" . $title . "\", description=\"" . $description . "\" WHERE email = \"" . $email . "\"";
+
+
+        $conn->query($updatedb);
+
+        $sql = "SELECT * FROM fm_users WHERE email = '$email'";
+        $result = $conn->query($sql);
+
+         while ($row = $result->fetch_assoc()){
+                         //$_SESSION['email'] = $email;
+                         $_SESSION['first_name'] = $row['first_name'];
+                         $_SESSION['last_name'] = $row['last_name'];
+                         $_SESSION['description'] = $row['description'];
+                         $_SESSION['title'] = $row['title'];
+                         //$_SESSION['image_url'] = $row['image_url'];
+                 }
+header('Location: profile.php');
+}
 ?>
 <!doctype html>
 <html lang="en">
