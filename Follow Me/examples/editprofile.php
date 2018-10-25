@@ -3,30 +3,30 @@
 session_start();
 require("db_connection.php");
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $db_host = 'localhost'; 
-        $db_user = 'andrew'; 
-        $db_password = 'southhills#'; 
-        $db_name = 'andrew'; 
-        $conn = new mysqli($db_host,$db_user,$db_password,$db_name);
+    $db_host = 'localhost'; 
+    $db_user = 'andrew'; 
+    $db_password = 'southhills#'; 
+    $db_name = 'andrew'; 
+    $conn = new mysqli($db_host,$db_user,$db_password,$db_name);
+
+    if ($conn->connect_error){ 
+        die("Connection failed: ". $conn->connect_error);
+    }
         
-        if ($conn->connect_error){ 
-            die("Connection failed: ". $conn->connect_error);
+    $sql ="UPDATE fm_users SET firstname='".$_POST['firstname']."', lastname='".$_POST['lastname']."', title='".$_POST['title']."', descr='".$_POST['descr']."' WHERE userid = " . $_SESSION['userid'];
+    $result = $conn->query($sql);
+    $sql="SELECT * FROM fm_users WHERE userid = " . $_SESSION['userid'];
+    $result = $conn->query($sql);
+       
+    while ($row = $result->fetch_assoc()) {
+        if (($_SESSION['userid'] == $row['userid'])) {
+            $_SESSION['firstname'] = $row['firstname'];
+            $_SESSION['lastname'] = $row['lastname'];
+            $_SESSION['title'] = $row['title'];
+            $_SESSION['descr'] = $row['descr'];
+            header('Location: profile.php');
         }
-        
-        $sql ="UPDATE fm_users SET firstname='".$_POST['firstname']."', lastname='".$_POST['lastname']."', title='".$_POST['title']."', descr='".$_POST['descr']."' WHERE userid = " . $_SESSION['userid'];
-        $result = $conn->query($sql);
-        $sql="SELECT * FROM fm_users WHERE userid = " . $_SESSION['userid'];
-        $result = $conn->query($sql);
-        
-        while ($row = $result->fetch_assoc()) {
-            if (($_SESSION['userid'] == $row['userid'])) {
-                $_SESSION['firstname'] = $row['firstname'];
-                $_SESSION['lastname'] = $row['lastname'];
-                $_SESSION['title'] = $row['title'];
-                $_SESSION['descr'] = $row['descr'];
-                header('Location: profile.php');
-            }
-        }
+    }
 }
 ?>
 
