@@ -92,16 +92,15 @@ if (!isset($_SESSION)){
                                         </div>
                                 </div>
                             </li>
-                                                <hr />";
-                                              }?>
-                                                <hr />
-                                        </ul>
-                                </div>
-                        </div>
-                </div>
+                            <hr />";
+                    }?>
+                    <hr />
+                </ul>
+            </div>
+        </div>
+    </div>
 
-
-        <footer class="footer section-dark">
+    <footer class="footer section-dark">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
