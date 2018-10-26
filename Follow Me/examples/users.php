@@ -1,50 +1,10 @@
 <?php
-
 if (!isset($_SESSION)){
-    session_start(); //Start session_start
-}
-//Uses the $_SESSION['email'] POST variable to display the email in the nav bar at the top (Welcome $_SESSION['image_url'])
-
-//Modify fm_users to image_url...load it to the $_SESSION['email'] variable
-
-//Modify the fm_users table to include first and last name....Use the session variable first name and last name
-//Modify fm_users to add title and then load it to the $_SESSION['title']
-//Modify fm_users to add description and then load it to the $_SESSION['description']
-
-
-
-//Start the session if not running///
-//Add name attributes to form elements
-//Set default values for each form element from $_SESSION
-//Update submitted values to SQLiteDatabase
-//Update submitted value to $_SESSION
-if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
-    $first_name=$_POST['first_name'];
-    $last_name=$_POST['last_name'];
-    $title=$_POST['title'];
-    $description=$_POST['description'];
-
-    $email=$_SESSION['email'];
-    require('dbconnection.php');
-    $updatedb="UPDATE fm_users SET first_name=\"" .  $first_name . "\", last_name=\"" . $last_name .  "\", title=\"" . $title . "\", description=\"" . $description . "\" WHERE email = \"" . $email . "\"";
-    
-    $conn->query($updatedb);
-    $sql = "SELECT * FROM fm_users WHERE email = '$email'";
-    $result = $conn->query($sql);
-
-    while ($row = $result->fetch_assoc()){
-        //$_SESSION['email'] = $email;
-        $_SESSION['first_name'] = $row['first_name'];
-        $_SESSION['last_name'] = $row['last_name'];
-        $_SESSION['description'] = $row['description'];
-        $_SESSION['title'] = $row['title'];
-        //$_SESSION['image_url'] = $row['image_url'];
-    }
-    header('Location: profile.php');
-}
-
+        session_start(); //Start session_start
+} 
 ?>
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -97,40 +57,52 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
     </nav>
 
     <div class="wrapper">
-        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
-            <div class="filter">
-            </div>
-        </div>
-        <br />
-        <br />
-        <div class="row">
-            <div class="col-md-6 ml-auto mr-auto">
-                <ul class="list-unstyled follows">
-                    <li>
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2 ml-auto mr-auto">
-                                <img src="../assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                            </div>
-                            <div class="col-md-7 col-sm-4  ml-auto mr-auto">
-                                <h6>Flume<br/><small>Musical Producer</small></h6>
-                            </div>
-                            <div class="col-md-3 col-sm-2  ml-auto mr-auto">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                        <span class="form-check-sign"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <hr />
-                </ul>
-            </div>
-        </div>
-    </div>
+      <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
+                          <div class="filter"></div>
+                  </div>
 
-    <footer class="footer section-dark">
+                        <br />
+                        <br />
+
+                        <div class="row">
+                                <div class="col-md-6 ml-auto mr-auto">
+                                        <ul class="list-unstyled follows">
+                                          <?php
+                                          require('dbconnection.php');
+                                          $sql = "SELECT * FROM fm_users";
+
+                                          //Execute the SQL Query
+                                          $result = $conn->query($sql);
+
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo "<li>
+                                                        <div class=\"row\">
+                                                                <div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">
+                                                                        <img src=\"". $row['image_url'] . "  \"alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">
+                                                                </div>
+                                                                <div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
+                                                                      echo  "<h6>" . $row['first_name'] . ' ' . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                                                              echo "</div>
+                                                                <div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">
+                                                                        <div class=\"form-check\">
+                                                                                <label class=\"form-check-label\">
+                                                                                        <input class=\"form-check-input\" type=\"checkbox\" value=\"\" unchecked>
+                                                                                        <span class=\"form-check-sign\"></span>
+                                                                                </label>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <hr />";
+                                              }?>
+                                                <hr />
+                                        </ul>
+                                </div>
+                        </div>
+                </div>
+
+
+        <footer class="footer section-dark">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
