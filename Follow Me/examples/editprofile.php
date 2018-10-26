@@ -16,23 +16,22 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton']))   {
 
     $email=$_SESSION['email'];
     require('dbconnection.php');
-        $updatedb="UPDATE fm_users SET first_name=\"" .  $first_name . "\", last_name=\"" . $last_name .  "\", title=\"" . $title . "\", description=\"" . $description . "\" WHERE email = \"" . $email . "\"";
+    $updatedb="UPDATE fm_users SET first_name=\"" .  $first_name . "\", last_name=\"" . $last_name .  "\", title=\"" . $title . "\", description=\"" . $description . "\" WHERE email = \"" . $email . "\"";
 
+    $conn->query($updatedb);
 
-        $conn->query($updatedb);
+    $sql = "SELECT * FROM fm_users WHERE email = '$email'";
+    $result = $conn->query($sql);
 
-        $sql = "SELECT * FROM fm_users WHERE email = '$email'";
-        $result = $conn->query($sql);
-
-         while ($row = $result->fetch_assoc()){
-                         //$_SESSION['email'] = $email;
-                         $_SESSION['first_name'] = $row['first_name'];
-                         $_SESSION['last_name'] = $row['last_name'];
-                         $_SESSION['description'] = $row['description'];
-                         $_SESSION['title'] = $row['title'];
-                         //$_SESSION['image_url'] = $row['image_url'];
-                 }
-header('Location: profile.php');
+    while ($row = $result->fetch_assoc()){
+        //$_SESSION['email'] = $email;
+        $_SESSION['first_name'] = $row['first_name'];
+        $_SESSION['last_name'] = $row['last_name'];
+        $_SESSION['description'] = $row['description'];
+        $_SESSION['title'] = $row['title'];
+        //$_SESSION['image_url'] = $row['image_url'];
+    }
+    header('Location: profile.php');
 }
 ?>
 
