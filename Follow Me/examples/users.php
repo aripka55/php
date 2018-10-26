@@ -130,8 +130,7 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
         </div>
     </div>
 
-
-        <footer class="footer section-dark">
+    <footer class="footer section-dark">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
