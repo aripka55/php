@@ -1,17 +1,7 @@
 <?php
-
 if (!isset($_SESSION)){
-        session_start(); //Start session_start
+    session_start(); //Start session_start
 }
-//Uses the $_SESSION['email'] POST variable to display the email in the nav bar at the top (Welcome $_SESSION['image_url'])
-
-//Modify fm_users to image_url...load it to the $_SESSION['email'] variable
-
-//Modify the fm_users table to include first and last name....Use the session variable first name and last name
-//Modify fm_users to add title and then load it to the $_SESSION['title']
-//Modify fm_users to add description and then load it to the $_SESSION['description']
-
-
 
 //Start the session if not running///
 //Add name attributes to form elements
@@ -19,13 +9,13 @@ if (!isset($_SESSION)){
 //Update submitted values to SQLiteDatabase
 //Update submitted value to $_SESSION
 if (isset($_SESSION['email']) && isset($_POST['savebutton']))   {
-        $first_name=$_POST['first_name'];
-        $last_name=$_POST['last_name'];
-        $title=$_POST['title'];
-        $description=$_POST['description'];
+    $first_name=$_POST['first_name'];
+    $last_name=$_POST['last_name'];
+    $title=$_POST['title'];
+    $description=$_POST['description'];
 
-        $email=$_SESSION['email'];
-        require('sitedbconn.php');
+    $email=$_SESSION['email'];
+    require('dbconnection.php');
         $updatedb="UPDATE fm_users SET first_name=\"" .  $first_name . "\", last_name=\"" . $last_name .  "\", title=\"" . $title . "\", description=\"" . $description . "\" WHERE email = \"" . $email . "\"";
 
 
