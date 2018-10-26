@@ -69,31 +69,31 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
 </head>
-<body>
 
-  <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
-    <div class="container">
-                        <div class="navbar-translate">
-               <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                             <span class="navbar-toggler-bar"></span>
-                                   <span class="navbar-toggler-bar"></span>
-                                   <span class="navbar-toggler-bar"></span>
-               </button>
-               <a class="navbar-brand" href="#">Follow Me</a>
-                        </div>
-                        <div class="collapse navbar-collapse" id="navbarToggler">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="login.php" class="nav-link">Login</a>
-                        </li>
-                                                                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                                                                                <?php echo $_SESSION['email']; ?>
-                                                                                        </a>
-                        </li>
-                    </ul>
-                </div>
-                </div>
+<body>
+    <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
+        <div class="container">
+            <div class="navbar-translate">
+                <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar"></span>
+                    <span class="navbar-toggler-bar"></span>
+                    <span class="navbar-toggler-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Follow Me</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="login.php" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <?php echo $_SESSION['email']; ?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
     <div class="wrapper">
@@ -101,59 +101,36 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
                           <div class="filter"></div>
                   </div>
 
-                        <div class="tab-content following">
-                                        <div class="tab-pane active" id="follows" role="tabpanel">
-                                                        <div class="row">
-                                                                        <div class="col-md-6 ml-auto mr-auto">
-                                                                                        <ul class="list-unstyled follows">
-                                                                                                        <li>
-                                                                                                                        <div class="row">
-                                                                                                                                        <div class="col-md-2 col-sm-2 ml-auto mr-auto">
-                                                                                                                                                        <img src="../assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                                                                                                                                        </div>
-                                                                                                                                        <div class="col-md-7 col-sm-4  ml-auto mr-auto">
-                                                                                                                                                        <h6>Flume<br/><small>Musical Producer</small></h6>
-                                                                                                                                        </div>
-                                                                                                                                        <div class="col-md-3 col-sm-2  ml-auto mr-auto">
-                                                        <div class="form-check">
-                                                                                                                                <label class="form-check-label">
-                                                                                                                                                <input class="form-check-input" type="checkbox" value="" checked>
-                                                                                                                                                <span class="form-check-sign"></span>
-                                                                                                                                </label>
-                                                                                                                </div>
-                                                                                                                                        </div>
-                                                                                                                        </div>
-                                                                                                        </li>
-                                                                                                        <hr />
-                                                                                                        <li>
-                                                                                                                        <div class="row">
-                                                                                                                                        <div class="col-md-2 ml-auto mr-auto ">
-                                                                                                                                                        <img src="../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                                                                                                                                        </div>
-                                                                                                                                        <div class="col-md-7 col-sm-4">
-                                                                                                                                                        <h6>Banks<br /><small>Singer</small></h6>
-                                                                                                                                        </div>
-                                                                                                                                        <div class="col-md-3 col-sm-2">
-                                                        <div class="form-check">
-                                                                                                                                <label class="form-check-label">
-                                                                                                                                                <input class="form-check-input" type="checkbox" value="">
-                                                                                                                                                <span class="form-check-sign"></span>
-                                                                                                                                </label>
-                                                                                                                </div>
-                                                                                                                                        </div>
-                                                                                                                        </div>
-                                                                                                        </li>
-                                                                                        </ul>
-                                                                        </div>
-                                                        </div>
-                                        </div>
-                                        <div class="tab-pane text-center" id="following" role="tabpanel">
-                                                        <h3 class="text-muted">Not following anyone yet :(</h3>
-                                                        <button class="btn btn-warning btn-round">Find artists</button>
-                                        </div>
-                        </div>
+                        <br />
+                        <br />
 
-    </div>
+                        <div class="row">
+                                <div class="col-md-6 ml-auto mr-auto">
+                                        <ul class="list-unstyled follows">
+                                                <li>
+                                                        <div class="row">
+                                                                <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                                                        <img src="../assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                                                </div>
+                                                                <div class="col-md-7 col-sm-4  ml-auto mr-auto">
+                                                                        <h6>Flume<br/><small>Musical Producer</small></h6>
+                                                                </div>
+                                                                <div class="col-md-3 col-sm-2  ml-auto mr-auto">
+                                                                        <div class="form-check">
+                                                                                <label class="form-check-label">
+                                                                                        <input class="form-check-input" type="checkbox" value="" checked>
+                                                                                        <span class="form-check-sign"></span>
+                                                                                </label>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <hr />
+                                        </ul>
+                                </div>
+                        </div>
+                </div>
+
 
         <footer class="footer section-dark">
         <div class="container">
