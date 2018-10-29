@@ -98,9 +98,7 @@ if (!isset($_SESSION)){
             </div>
         </div>
     </div>
-
-
-        <footer class="footer section-dark">
+    <footer class="footer section-dark">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
