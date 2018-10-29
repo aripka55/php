@@ -67,7 +67,7 @@ if (!isset($_SESSION)){
             <div class="col-md-6 ml-auto mr-auto">
                 <ul class="list-unstyled follows">
                     <?php
-                    require('sitedbconn.php');
+                    require('dbconnection.php');
                     $sql = "SELECT * FROM fm_users";
 
                     //Execute the SQL Query
