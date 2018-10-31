@@ -1,33 +1,32 @@
 <?php
-if (!isset($_SESSION)){
-    session_start(); //Start session_start
+if (!isset($_SESSION)) {
+    session_start();
 }
+require('dbconnection.php');
 
-if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
-    $first_name=$_POST['first_name'];
-    $last_name=$_POST['last_name'];
-    $title=$_POST['title'];
-    $description=$_POST['description'];
+if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['update-btn']) && $_POST['first_name'] != null && $_POST['last_name'] != null && $_POST['title'] != null && $_POST['description'] != null) {
 
-    $email=$_SESSION['email'];
-    require('sitedbconn.php');
-    $updatedb="UPDATE fm_users SET first_name=\"" .  $first_name . "\", last_name=\"" . $last_name .  "\", title=\"" . $title . "\", description=\"" . $description . "\" WHERE email = \"" . $email . "\"";
+        $email = $_SESSION['email'];
+        $firstname = $_POST['first_name'];
+        $lastname = $_POST['last_name'];
+        $title = $_POST['title'];
+        $description = $_POST['description'];
 
+        $sql = "UPDATE fm_users SET first_name = '$firstname', last_name = '$lastname', title = '$title', description = '$description' WHERE email = '$email'";
+        $conn->query($sql);
 
-    $conn->query($updatedb);
+        $sql2 = "SELECT * FROM fm_users where email = '$email'";
+        $result = $conn->query($sql2);
 
-    $sql = "SELECT * FROM fm_users WHERE email = '$email'";
-    $result = $conn->query($sql);
-
-    while ($row = $result->fetch_assoc()){
-        //$_SESSION['email'] = $email;
-        $_SESSION['first_name'] = $row['first_name'];
-        $_SESSION['last_name'] = $row['last_name'];
-        $_SESSION['description'] = $row['description'];
-        $_SESSION['title'] = $row['title'];
-        //$_SESSION['image_url'] = $row['image_url'];
+        while ($row = $result->fetch_assoc()) {
+            $_SESSION['first_name'] = $row['first_name'];
+            $_SESSION['last_name'] = $row['last_name'];
+            $_SESSION['title'] = $row['title'];
+            $_SESSION['description'] = $row['description'];
+        }
+        header('Location: profile.php');
     }
-    header('Location: profile.php');
 }
 ?>
 
@@ -44,14 +43,14 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
 
-    <!-- Fonts and icons -->
+    <!--  Fonts and icons -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
@@ -59,7 +58,7 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
 
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
-        <div class="container">     
+        <div class="container">
             <div class="navbar-translate">
                 <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar"></span>
@@ -75,9 +74,7 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            Welcome<?php
-                            echo " " . $_SESSION['email']; //WE need to use the session variable here because we don't have a variable called email on this page
-                            ?>
+                            <?php echo $_SESSION['email']; ?>
                         </a>
                     </li>
                 </ul>
@@ -86,7 +83,7 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
     </nav>
 
     <div class="wrapper">
-        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
+        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/default.jpg');">
             <div class="filter">
             </div>
         </div>
@@ -94,76 +91,68 @@ if (isset($_SESSION['email']) && isset($_POST['savebutton'])) {
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
-                        <h2 class="text-center">
-                            Edit Profile
-                        </h2>
-                            <form class="contact-form" action="" method="post">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>First Name
-                                        </label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="nc-icon nc-single-02"></i>
-                                                </span>
-                                                <input type="text" class="form-control" placeholder="First Name"  name="first_name" value="<?php echo $_SESSION['first_name']; ?>">
-                                            </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Last Name
-                                        </label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <!-- <i class="nc-icon nc-email-85"></i> -->
-                                                <i class="nc-icon nc-single-02"></i>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Last Name" name="last_name" value="<?php echo $_SESSION['last_name']; ?>">
-                                        </div>
-                                    </div>
-                                </div> <!--Ends the first row -->
-                                <label>Title</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <!-- <i class="nc-icon nc-email-85"></i> -->
-                                        <i class="nc-icon nc-tag-content"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Title" value="<?php echo $_SESSION['title']; ?>"  name="title">
-                                </div>
-                                <label>
-                                    Description
-                                </label>
-                                <textarea class="form-control" rows="4" placeholder="Tell everyone a little bit about you..." name="description"><?php echo $_SESSION['description'];?></textarea>
-                                <div class="row">
-                                    <div class="col-md-4 ml-auto mr-auto text-center">
-                                        <button class="btn btn-danger btn-lg btn-fill" name="savebutton">Save</button>
+                        <!-- ml-auto and mr-auto automatically move the div ogjects -->
+                        <h2 class="text-center">Edit Profile</h2>
+                        <form class="contact-form" action="" method="post">
+                            <div class="row">
+                                <!-- col-md-6 designates the amount of spaces used in the 12 space grid that is used -->
+                                <div class="col-md-6">
+                                    <label>First Name:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="nc-icon nc-single-02"></i>
+                                        </span>
+                                        <input type="text" name="first_name" class="form-control" placeholder="First Name" value="<?php echo $_SESSION['first_name'] ?>">
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="col-md-6">
+                                    <label>Last Name:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="nc-icon nc-single-02"></i>
+                                        </span>
+                                        <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="<?php echo $_SESSION['last_name'] ?>">
+                                    </div>
+                                </div>
+                            </div> <!-- ends the first row -->
+                            <label>Title:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="nc-icon nc-tag-content"></i>
+                                </span>
+                                <input type="text" name="title" class="form-control" placeholder="Title" value="<?php echo $_SESSION['title'] ?>">
+                            </div>
+                            <label>Description</label>
+                            <textarea class="form-control" name="description" rows="4" placeholder="Tell everyone a little about you..."><?php echo $_SESSION['description'] ?></textarea>
+                            <div class="row">
+                                <div class="col-md-4 ml-auto mr-auto text-center">
+                                    <button class="btn btn-danger btn-lg btn-fill" name="update-btn">Update</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
         <footer class="footer section-dark">
-            <div class="container">
-                <div class="row">
-                    <nav class="footer-nav">
-                        <ul>
-                            <li><a href="https://www.creative-tim.com">Creative Tim</a></li>
-                            <li><a href="http://blog.creative-tim.com">Blog</a></li>
-                            <li><a href="https://www.creative-tim.com/license">Licenses</a></li>
-                        </ul>
-                    </nav>
-                    <div class="credits ml-auto">
-                        <span class="copyright">
-                            © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-                        </span>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="https://www.creative-tim.com">Creative Tim</a></li>
+                        <li><a href="http://blog.creative-tim.com">Blog</a></li>
+                        <li><a href="https://www.creative-tim.com/license">Licenses</a></li>
+                    </ul>
+                </nav>
+                <div class="credits ml-auto">
+                    <span class="copyright">
+                        © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tem
+                    </span>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 </body>
 
 <!-- Core JS Files -->
