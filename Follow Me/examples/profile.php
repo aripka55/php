@@ -58,7 +58,7 @@ require('dbconnection.php');
     </nav>
 
     <div class="wrapper">
-        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/default.jpg');">
+        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
             <div class="filter">
             </div>
         </div>
