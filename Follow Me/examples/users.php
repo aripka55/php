@@ -69,7 +69,7 @@ while($row = $follow_result->fetch_row()) {
         </div>
     </nav>
     <div class="wrapper">
-        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
+        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/default.jpg');">
             <div class="filter">
             </div>
         </div>
@@ -82,7 +82,7 @@ while($row = $follow_result->fetch_row()) {
                     while($row = $result->fetch_assoc()) {
                         $user_id = $row['user_id'];
 
-                        if ($user_id == $userid){
+                        if ($user_id == $user_id){
                         }
                         else {
                             echo "<li>";
