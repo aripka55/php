@@ -96,7 +96,7 @@ $qresult = $conn->query($followers);
                                     </div>
                                 </div>
                             </li>
-                            <hr />
+                        <hr />
                     }
                     <hr />
                 </ul>
