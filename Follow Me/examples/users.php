@@ -1,11 +1,21 @@
 <?php
-if (!isset($_SESSION)){
-    session_start(); //Start session_start
+if (!isset($_SESSION)) {
+    session_start();
 }
+require('dbconnection.php');
 
-$followers="SELECT * FROM fm_follows;";
-$qresult = $conn->query($followers);
- ?>
+$sql = "SELECT userid, first_name, last_name, title, image_url FROM fm_users";
+$result = $conn->query($sql);
+
+$userid = $_SESSION['user_id'];
+$sql = "SELECT following_user_id FROM fm_followers WHERE user_id = '$userid'";
+
+$follow_result = $conn->query($sql);
+
+while($row = $follow_result->fetch_row()) {
+    $following_user_ids[] = $row[0];
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,9 +68,8 @@ $qresult = $conn->query($followers);
             </div>
         </div>
     </nav>
-
     <div class="wrapper">
-        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/default.jpg');">
+        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
             <div class="filter">
             </div>
         </div>
@@ -70,40 +79,45 @@ $qresult = $conn->query($followers);
             <div class="col-md-6 ml-auto mr-auto">
                 <ul class="list-unstyled follows">
                     <?php
-                    require('dbconnection.php');
-                    $sql = "SELECT * FROM fm_users";
+                    while($row = $result->fetch_assoc()) {
+                        $user_id = $row['user_id'];
 
-                    //Execute the SQL Query
-                    $result = $conn->query($sql);
-
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<li>
-                                <div class=\"row\">
-                                    <div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">
-                                        <img src=\"". $row['image_url'] . "  \"alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">
-                                    </div>
-                                    <div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
-                                        echo  "<h6>" . $row['first_name'] . ' ' . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
-                                        echo "</div>
-                                        <div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">
-                                            <div class=\"form-check\">
-                                                <label class=\"form-check-label\">";?>
-                                                    <input name="followbox" class="form-check-input" type="checkbox" value="" >
-                                                        <span class="form-check-sign"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        <hr />
+                        if ($user_id == $userid){
+                        }
+                        else {
+                            echo "<li>";
+                            echo "<div class=\"row\">";
+                            echo "<div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">";
+                            echo "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
+                            echo "</div>";
+                            echo "<div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
+                            echo "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                            echo "</div>";
+                            echo "<div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">";
+                            echo "<div class=\"form-check\">";
+                            echo "<label class=\"form-check-label\">";
+                            echo "<input class=\"form-check-input\" type=\"checkbox\" value=\"\"";
+                                
+                            if (in_array($user_id, $following_user_ids)) {
+                                echo " checked";
+                            }
+                            echo ">";
+                            echo "<span class=\"form-check-sign\"></span>";
+                            echo "</label>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</li>";
+                            echo "<hr />";
+                        }
                     }
-                    <hr />
+                    ?>
                 </ul>
             </div>
         </div>
+    </div>
 
-        <footer class="footer section-dark">
+    <footer class="footer section-dark">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
@@ -115,7 +129,7 @@ $qresult = $conn->query($followers);
                 </nav>
                 <div class="credits ml-auto">
                     <span class="copyright">
-                        © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+                        © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tem
                     </span>
                 </div>
             </div>
@@ -131,7 +145,7 @@ $qresult = $conn->query($followers);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
+
+
 <!--  Paper Kit Initialization snd functons -->
 <script src="../assets/js/paper-kit.js?v=2.1.0"></script>
-
-</html>
