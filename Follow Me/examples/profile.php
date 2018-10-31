@@ -1,13 +1,9 @@
 <?php
-session_start(); //Start session_start
-
-//Uses the $_SESSION['email'] POST variable to display the email in the nav bar at the top (Welcome $_SESSION['image_url'])
-
-//Modify fm_users to image_url...load it to the $_SESSION['email'] variable
-
-//Modify the fm_users table to include first and last name....Use the session variable first name and last name
-//Modify fm_users to add title and then load it to the $_SESSION['title']
-//Modify fm_users to add description and then load it to the $_SESSION['description']?>
+if (!isset($_SESSION)) {
+    session_start();
+}
+require('dbconnection.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +18,11 @@ session_start(); //Start session_start
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-    <!--  CSS for Demo Purpose, don't include it in your project -->
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
 
     <!-- Fonts and icons -->
@@ -53,9 +49,7 @@ session_start(); //Start session_start
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            Welcome<?php
-                            echo " " . $_SESSION['email']; //WE need to use the session variable here because we don't have a variable called email on this page
-                            ?>
+                            <?php echo $_SESSION['email']; ?>
                         </a>
                     </li>
                 </ul>
@@ -99,6 +93,7 @@ session_start(); //Start session_start
                         </ul>
                     </div>
                 </div>
+
                 <!-- Tab panes -->
                 <div class="tab-content following">
                     <div class="tab-pane active" id="follows" role="tabpanel">
@@ -133,7 +128,7 @@ session_start(); //Start session_start
                                                 <h6>Banks<br /><small>Singer</small></h6>
                                             </div>
                                             <div class="col-md-3 col-sm-2">
-                                                <div class="form-check">                                                                        
+                                                <div class="form-check">
                                                     <label class="form-check-label">
                                                         <input class="form-check-input" type="checkbox" value="">
                                                         <span class="form-check-sign"></span>
@@ -154,7 +149,6 @@ session_start(); //Start session_start
             </div>
         </div>
     </div>
-
     <footer class="footer section-dark">
         <div class="container">
             <div class="row">
@@ -167,7 +161,7 @@ session_start(); //Start session_start
                 </nav>
                 <div class="credits ml-auto">
                     <span class="copyright">
-                        © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+                        © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tem
                     </span>
                 </div>
             </div>
