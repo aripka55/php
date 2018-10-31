@@ -60,7 +60,7 @@ $qresult = $conn->query($followers);
     </nav>
 
     <div class="wrapper">
-        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
+        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/default.jpg');">
             <div class="filter">
             </div>
         </div>
@@ -73,37 +73,35 @@ $qresult = $conn->query($followers);
                     require('dbconnection.php');
                     $sql = "SELECT * FROM fm_users";
 
-                                          //Execute the SQL Query
-                                          $result = $conn->query($sql);
+                    //Execute the SQL Query
+                    $result = $conn->query($sql);
 
-                                            while ($row = $result->fetch_assoc()) {
-                                                echo "<li>
-                                                        <div class=\"row\">
-                                                                <div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">
-                                                                        <img src=\"". $row['image_url'] . "  \"alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">
-                                                                </div>
-                                                                <div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
-                                                                      echo  "<h6>" . $row['first_name'] . ' ' . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
-                                                              echo "</div>
-                                                                <div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">
-                                                                        <div class=\"form-check\">
-                                                                                <label class=\"form-check-label\">";?>
-                                                                                        <input name="followbox" class="form-check-input" type="checkbox" value="" >
-
-                                                                                      <span class="form-check-sign"></span>
-                                                                                </label>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </li>
-                                                <hr />
-                                              }
-                                                <hr />
-                                        </ul>
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<li>
+                                <div class=\"row\">
+                                    <div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">
+                                        <img src=\"". $row['image_url'] . "  \"alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">
+                                    </div>
+                                    <div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
+                                        echo  "<h6>" . $row['first_name'] . ' ' . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                                        echo "</div>
+                                        <div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">
+                                            <div class=\"form-check\">
+                                                <label class=\"form-check-label\">";?>
+                                                    <input name="followbox" class="form-check-input" type="checkbox" value="" >
+                                                        <span class="form-check-sign"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                        </div>
-                </div>
-
+                            </li>
+                            <hr />
+                    }
+                    <hr />
+                </ul>
+            </div>
+        </div>
 
         <footer class="footer section-dark">
         <div class="container">
