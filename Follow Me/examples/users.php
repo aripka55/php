@@ -4,16 +4,16 @@ if (!isset($_SESSION)) {
 }
 require('dbconnection.php');
 
-$sql = "SELECT userid, first_name, last_name, title, image_url FROM fm_users";
+$sql = "SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
 $result = $conn->query($sql);
 
 $userid = $_SESSION['user_id'];
-$sql = "SELECT following_user_id FROM fm_followers WHERE user_id = '$userid'";
+$sql = "SELECT following_user_id FROM fm_followers WHERE user_id = '$user_id'";
 
 $follow_result = $conn->query($sql);
 
 while($row = $follow_result->fetch_row()) {
-    $following_user_ids[] = $row[0];
+    $following_user_id[] = $row[0];
 }
 ?>
 
@@ -98,7 +98,7 @@ while($row = $follow_result->fetch_row()) {
                             echo "<label class=\"form-check-label\">";
                             echo "<input class=\"form-check-input\" type=\"checkbox\" value=\"\"";
                                 
-                            if (in_array($user_id, $following_user_ids)) {
+                            if (in_array($user_id, $following_user_id)) {
                                 echo " checked";
                             }
                             echo ">";
