@@ -30,7 +30,7 @@ while($row = $follow_result->fetch_row()) {
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-        <!-- Bootstrap core CSS     -->
+    <!-- Bootstrap core CSS -->
         <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
