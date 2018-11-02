@@ -22,7 +22,7 @@ require('dbconnection.php');
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <!--  CSS for Demo Purpose, don't include it in your project  -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
 
     <!-- Fonts and icons -->
