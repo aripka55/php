@@ -17,6 +17,8 @@ while($row = $follow_result->fetch_row()) {
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
