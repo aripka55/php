@@ -22,9 +22,7 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         while ($row = $result->fetch_assoc()) {
             $_SESSION['first_name'] = $row['first_name'];
             $_SESSION['last_name'] = $row['last_name'];
-            $_SESSION['title'] = $row['title'];
-            $_SESSION['description'] = $row['description'];
-        }
+            $_SESSION['title'] = $row['title'];]
         header('Location: profile.php');
     }
 }

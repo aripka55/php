@@ -2,18 +2,29 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-require('dbconnection.php');
 
-$sql = "SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
-$result = $conn->query($sql);
+function checked($follower_check, $value){
+    require('dbconnection.php');
 
-$userid = $_SESSION['user_id'];
-$sql = "SELECT following_user_id FROM fm_followers WHERE user_id = '$user_id'";
+    //$user = $_SESSION['user_id'];
+    //echo $user . "is the value of the user";
+    
+    if(!empty($_POST[$follower_check])) {
+        echo "The follower check value is" . $_POST[$follower_check];
+        echo $_POST[$follower_check] . "is follower check value";
+        echo "The value of value is" . $value;
 
-$follow_result = $conn->query($sql);
-
-while($row = $follow_result->fetch_row()) {
-    $following_user_id[] = $row[0];
+        //foreach($_POST[$follower_check] as $value_check){
+            echo "value_check value is" . $value_check;
+            echo "The value of value is" . $value;
+            //if($value in $_POST[$follower_check])
+            if(in_array($value, $_POST[$follower_check])){
+                echo "It is here";
+                return true;
+            }
+        //}
+    }
+    return false;
 }
 ?>
 
