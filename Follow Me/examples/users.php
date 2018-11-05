@@ -17,7 +17,7 @@ while($row = $follow_result->fetch_row()) {
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -46,89 +46,78 @@ while($row = $follow_result->fetch_row()) {
 <body>
   <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
     <div class="container">
-                        <div class="navbar-translate">
-               <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                             <span class="navbar-toggler-bar"></span>
-                                   <span class="navbar-toggler-bar"></span>
-                                   <span class="navbar-toggler-bar"></span>
-               </button>
-               <a class="navbar-brand" href="#">Follow Me</a>
-                        </div>
-                        <div class="collapse navbar-collapse" id="navbarToggler">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="login.php" class="nav-link">Login</a>
-                        </li>
-                                                                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                                                                                <?php echo $_SESSION['email']; ?>
-                                                                                        </a>
-                        </li>
-                    </ul>
-                </div>
-                </div>
+        <div class="navbar-translate">
+            <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Follow Me</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="login.php" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <?php echo $_SESSION['email']; ?>                                                             
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     </nav>
 
     <div class="wrapper">
-      <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
-                          <div class="filter"></div>
-                  </div>
+        <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
+            <div class="filter">
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-6 ml-auto mr-auto">
+                <ul class="list-unstyled follows">
+                    <?php
+                    while($row = $result->fetch_assoc()) {
+                        $user_id = $row['user_id'];
+                        if ($user_id == $userid){
+                        }
+                        else {
+                            echo "<li>";
+                            echo "<div class=\"row\">";
+                            echo "<div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">";
+                            echo "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
+                            echo "</div>";
+                            echo "<div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
+                            echo "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                            echo "</div>";
+                            echo "<div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">";
+                            echo "<div class=\"form-check\">";
+                            echo "<label class=\"form-check-label\">";
+                            echo "<input class=\"form-check-input\" type=\"checkbox\" value=\"\"";
 
-                        <br />
-                        <br />
+                            if (in_array($user_id, $following_user_ids)) {
+                                echo " checked";
+                            }
+                            echo ">";
+                            echo "<span class=\"form-check-sign\"></span>";
+                            echo "</label>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</li>";
+                            echo "<hr />";
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-                        <div class="row">
-                                <div class="col-md-6 ml-auto mr-auto">
-                                        <ul class="list-unstyled follows">
-                                                <?php
-
-            while($row = $result->fetch_assoc()) {
-
-              $user_id = $row['user_id'];
-
-              if ($user_id == $userid){
-
-              }
-              else {
-
-              echo "<li>";
-                                                echo    "<div class=\"row\">";
-                                                echo            "<div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">";
-                                                echo                    "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
-                                                echo            "</div>";
-                                                echo            "<div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
-                                                echo                    "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
-                                                echo            "</div>";
-                                                echo            "<div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">";
-                                                echo                    "<div class=\"form-check\">";
-                                                echo                            "<label class=\"form-check-label\">";
-                                                echo                                    "<input class=\"form-check-input\" type=\"checkbox\" value=\"\"";
-
-              if (in_array($user_id, $following_user_ids)) {
-
-                echo " checked";
-              }
-              echo ">";
-
-                                                echo                                    "<span class=\"form-check-sign\"></span>";
-                                                echo                            "</label>";
-                                                echo                    "</div>";
-                                                echo            "</div>";
-                                                echo    "</div>";
-                                                echo "</li>";
-              echo "<hr />";
-
-              }
-            }
-                                                ?>
-
-                                        </ul>
-                                </div>
-                        </div>
-                </div>
-
-
-        <footer class="footer section-dark">
+    <footer class="footer section-dark">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
