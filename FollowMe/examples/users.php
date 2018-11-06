@@ -35,10 +35,8 @@ $sql = "SELECT following_user_id FROM fm_follows WHERE user_id = '$userid'";
 $follow_result = $conn->query($sql);
 
 while($row = $follow_result->fetch_row()) {
-
-  $following_user_ids[] = $row[0];
+    $following_user_id[] = $row[0];
 }
-
 ?>
 
 <!DOCTYPE html>
