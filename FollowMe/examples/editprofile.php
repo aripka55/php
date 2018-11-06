@@ -19,10 +19,10 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql2 = "SELECT * FROM fm_users where email = '$email'";
         $result = $conn->query($sql2);
 
-        while ($row = $result->fetch_assoc()) {
-            $_SESSION['first_name'] = $row['first_name'];
-            $_SESSION['last_name'] = $row['last_name'];
-            $_SESSION['title'] = $row['title'];]
+        while ($row2 = $result->fetch_assoc()) {
+            $_SESSION['first_name'] = $row2['first_name'];
+            $_SESSION['last_name'] = $row2['last_name'];
+            $_SESSION['title'] = $row2['title'];]
         header('Location: profile.php');
     }
 }
