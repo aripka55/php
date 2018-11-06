@@ -47,7 +47,7 @@ while($row = $follow_result->fetch_row()) {
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Follow me by Andrew</title>
+    <title>Follow Me by Andrew</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -85,7 +85,7 @@ while($row = $follow_result->fetch_row()) {
                         <a href="editprofile.php" class="nav-link">Edit Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="follows.php" class="nav-link">Follows</a>
+                        <a href="follows.php" class="nav-link">Follow</a>
                     </li>
                     <li class="nav-item">
                         <a href="profile.php" class="nav-link">
@@ -127,7 +127,7 @@ while($row = $follow_result->fetch_row()) {
                                 echo "<label class=\"form-check-label\">";
                                 echo "<input class=\"form-check-input\" name=" . $row['first_name'] . " type=\"checkbox\" value=\"yes\"";
 
-                                if (in_array($user_id, $following_user_ids)) {
+                                if (in_array($user_id, $following_user_id)) {
                                     echo " checked";
                                 }
                                 echo ">";
