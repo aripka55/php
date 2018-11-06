@@ -1,31 +1,48 @@
 <?php
 if (!isset($_SESSION)) {
-    session_start();
+  session_start();
 }
+require('database.php');
 
-function checked($follower_check, $value){
-    require('dbconnection.php');
+$userid = $_SESSION['user_id'];
 
-    //$user = $_SESSION['user_id'];
-    //echo $user . "is the value of the user";
-    
-    if(!empty($_POST[$follower_check])) {
-        echo "The follower check value is" . $_POST[$follower_check];
-        echo $_POST[$follower_check] . "is follower check value";
-        echo "The value of value is" . $value;
+$sql2 = "SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
+$result2 = $conn->query($sql2);
 
-        //foreach($_POST[$follower_check] as $value_check){
-            echo "value_check value is" . $value_check;
-            echo "The value of value is" . $value;
-            //if($value in $_POST[$follower_check])
-            if(in_array($value, $_POST[$follower_check])){
-                echo "It is here";
-                return true;
-            }
-        //}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  while ($row2 = $result2->fetch_assoc()) {
+
+    $firstName = $row2['first_name'];
+
+    if ($_POST["$firstName"] == "yes") {
+
+    $follow_id = $row2['user_id'];
+    $sql2 = "INSERT IGNORE INTO fm_follows (user_id, following_user_id) VALUES ('$userid','$follow_id')";
+    $conn->query($sql2);
+  }
+
+    else {
+
+      $follow_id = $row2['user_id'];
+      $sql2 = "DELETE FROM fm_follows WHERE user_id = '$userid' AND following_user_id = '$follow_id'";
+      $conn->query($sql2);
     }
-    return false;
+  }
 }
+
+$sql = "SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
+$result = $conn->query($sql);
+
+$sql = "SELECT following_user_id FROM fm_follows WHERE user_id = '$userid'";
+
+$follow_result = $conn->query($sql);
+
+while($row = $follow_result->fetch_row()) {
+
+  $following_user_ids[] = $row[0];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -42,42 +59,48 @@ function checked($follower_check, $value){
     <meta name="viewport" content="width=device-width" />
 
     <!-- Bootstrap core CSS -->
-        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-        <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="../assets/css/demo.css" rel="stylesheet" />
+    <!--  CSS for Demo Purpose, don't include it in your project -->
+    <link href="../assets/css/demo.css" rel="stylesheet" />
 
-    <!--     Fonts and icons     -->
-        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-        <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
-
+    <!-- Fonts and icons -->
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
-    <div class="container">
-        <div class="navbar-translate">
-            <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-bar"></span>
-                <span class="navbar-toggler-bar"></span>
-                <span class="navbar-toggler-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Follow Me</a>
+    <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
+        <div class="container">
+            <div class="navbar-translate">
+                <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar"></span>
+                    <span class="navbar-toggler-bar"></span>
+                    <span class="navbar-toggler-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Follow Me</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="login.php" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="editprofile.php" class="nav-link">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="follows.php" class="nav-link">Follows</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.php" class="nav-link">
+                            <?php echo $_SESSION['email']; ?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <?php echo $_SESSION['email']; ?>                                                             
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
     </nav>
 
     <div class="wrapper">
@@ -90,39 +113,42 @@ function checked($follower_check, $value){
         <div class="row">
             <div class="col-md-6 ml-auto mr-auto">
                 <ul class="list-unstyled follows">
-                    <?php
-                    while($row = $result->fetch_assoc()) {
-                        $user_id = $row['user_id'];
-                        if ($user_id == $userid){
-                        }
-                        else {
-                            echo "<li>";
-                            echo "<div class=\"row\">";
-                            echo "<div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">";
-                            echo "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
-                            echo "</div>";
-                            echo "<div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
-                            echo "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
-                            echo "</div>";
-                            echo "<div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">";
-                            echo "<div class=\"form-check\">";
-                            echo "<label class=\"form-check-label\">";
-                            echo "<input class=\"form-check-input\" type=\"checkbox\" value=\"\"";
-
-                            if (in_array($user_id, $following_user_ids)) {
-                                echo " checked";
+                    <form method="post" action="">
+                        <?php
+                        while($row = $result->fetch_assoc()) {
+                            $user_id = $row['user_id'];
+                            if ($user_id == $userid){
                             }
-                            echo ">";
-                            echo "<span class=\"form-check-sign\"></span>";
-                            echo "</label>";
-                            echo "</div>";
-                            echo "</div>";
-                            echo "</div>";
-                            echo "</li>";
-                            echo "<hr />";
+                            else {
+                                echo "<li>";
+                                echo "<div class=\"row\">";
+                                echo "<div class=\"col-md-2 col-sm-2 ml-auto mr-auto\">";
+                                echo "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
+                                echo "</div>";
+                                echo "<div class=\"col-md-7 col-sm-4  ml-auto mr-auto\">";
+                                echo "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                                echo "</div>";
+                                echo "<div class=\"col-md-3 col-sm-2  ml-auto mr-auto\">";
+                                echo "<div class=\"form-check\">";
+                                echo "<label class=\"form-check-label\">";
+                                echo "<input class=\"form-check-input\" name=" . $row['first_name'] . " type=\"checkbox\" value=\"yes\"";
+
+                                if (in_array($user_id, $following_user_ids)) {
+                                    echo " checked";
+                                }
+                                echo ">";
+                                echo "<span class=\"form-check-sign\"></span>";
+                                echo "</label>";
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</li>";
+                                echo "<hr />";
+                            }
                         }
-                    }
-                    ?>
+                        ?>
+                        <input type="submit">
+                    </form>
                 </ul>
             </div>
         </div>
@@ -137,7 +163,7 @@ function checked($follower_check, $value){
                         <li><a href="http://blog.creative-tim.com">Blog</a></li>
                         <li><a href="https://www.creative-tim.com/license">Licenses</a></li>
                     </ul>
-                </nav>
+                 </nav>
                 <div class="credits ml-auto">
                     <span class="copyright">
                         © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tem
@@ -158,5 +184,4 @@ function checked($follower_check, $value){
 
 <!--  Paper Kit Initialization snd functons -->
 <script src="../assets/js/paper-kit.js?v=2.1.0"></script>
-
 </html>
