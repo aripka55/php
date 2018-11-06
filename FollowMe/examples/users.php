@@ -141,7 +141,7 @@ while($row = $follow_result->fetch_row()) {
                             }
                         }
                         ?>
-                        <!--<input type="submit">-->
+                        <input type="submit" placeholder="Submit">
                     </form>
                 </ul>
             </div>
