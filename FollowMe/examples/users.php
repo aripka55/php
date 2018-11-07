@@ -1,13 +1,10 @@
 <?php
-session_start();
-$db_host = 'localhost';
-$db_user = 'lev';
-$db_password = 'southhills#';
-$db_name = 'lev';
-$conn = new mysqli($db_host,$db_user,$db_password,$db_name);
-if ($conn->connect_error){ die("Connection failed: ". $conn->connect_error);}
+if (!isset($_SESSION)) {
+    session_start();
+}
+require('dbconnection.php');
 
-$main_user = $_SESSION['userid'];
+$userid = $_SESSION['user_id'];
 
 
 $sql="SELECT * FROM fm_users";
