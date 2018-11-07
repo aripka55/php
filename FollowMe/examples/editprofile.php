@@ -5,28 +5,27 @@ session_start();
 require('dbconnection.php');
 
 if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-if (isset($_POST['update-btn']) && $_POST['first_name'] != null && $_POST['last_name'] != null && $_POST['title'] != null && $_POST['description'] != null) {
+    if (isset($_POST['update-btn']) && $_POST['first_name'] != null && $_POST['last_name'] != null && $_POST['title'] != null && $_POST['description'] != null) {
+        $email = $_SESSION['email'];
+        $firstname = $_POST['first_name'];
+        $lastname = $_POST['last_name'];
+        $title = $_POST['title'];
+        $description = $_POST['description'];
 
-$email = $_SESSION['email'];
-$firstname = $_POST['first_name'];
-$lastname = $_POST['last_name'];
-$title = $_POST['title'];
-$description = $_POST['description'];
+        $sql = "UPDATE fm_users SET first_name = '$firstname', last_name = '$lastname', title = '$title', description = '$description' WHERE email = '$email'";
+        $conn->query($sql);
 
-$sql = "UPDATE fm_users SET first_name = '$firstname', last_name = '$lastname', title = '$title', description = '$description' WHERE email = '$email'";
-$conn->query($sql);
+        $sql2 = "SELECT * FROM fm_users where email = '$email'";
+        $result = $conn->query($sql2);
 
-$sql2 = "SELECT * FROM fm_users where email = '$email'";
-$result = $conn->query($sql2);
-
-while ($row = $result->fetch_assoc()) {
-$_SESSION['first_name'] = $row['first_name'];
-$_SESSION['last_name'] = $row['last_name'];
-$_SESSION['title'] = $row['title'];
-$_SESSION['description'] = $row['description'];
-}
-header('Location: profile.php');
-}
+        while ($row = $result->fetch_assoc()) {
+            $_SESSION['first_name'] = $row['first_name'];
+            $_SESSION['last_name'] = $row['last_name'];
+            $_SESSION['title'] = $row['title'];
+            $_SESSION['description'] = $row['description'];
+        }
+        header('Location: profile.php');
+    }
 }
 ?>
 
