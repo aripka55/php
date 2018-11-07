@@ -14,9 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $firstname = $row2['first_name'];
 
         if ($_POST["$firstname"] == "yes") {
-
             $follow_id = $row2['user_id'];
-            $sql2 = "INSERT IGNORE INTO fm_follows (user_id, following_user_id) VALUES ('$userid','$follow_id')";
+            $sql2 = "INSERT IGNORE INTO fm_followers (user_id, following_user_id) VALUES ('$userid','$follow_id')";
             $conn->query($sql2);
         }
         else {
