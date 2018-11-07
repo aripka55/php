@@ -15,11 +15,10 @@ $result2 = $conn->query($sql);
   //      $all_user[]=$row['userid'];
 //}
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-        //var_dump($all_user);
-        foreach ($all_user as $value1) {
-                foreach($_POST as $key => $value2)
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //var_dump($all_user);
+    foreach ($all_user as $value1) {
+    foreach($_POST as $key => $value2)
                 {
                         $found=0;
                         if ($value1 == $value2){// echo " This value: ".$value1." is in! <br />";
@@ -30,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         }
                 }
                 if ($found==0){//echo "This value: ".$value1." is NOT FOUND! <br />";
-                        $sql4 ="DELETE FROM fm_follow WHERE user_id='$main_user' AND follow_by='$value1'";
+                        $sql4 ="DELETE FROM fm_follow WHERE user_id='$userid' AND follow_by='$value1'";
                         $result4 = $conn->query($sql4);
 
                 }
