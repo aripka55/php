@@ -140,7 +140,11 @@ while($row = $follow_result->fetch_row()) {
                             }
                         }
                         ?>
-                        <input type="submit" placeholder="Submit">
+                        <div class="row">
+                            <div class="col-md-4 ml-auto mr-auto text-center">
+                                <button class="btn btn-danger btn-lg btn-fill">Submit</button>
+                            </div>
+                        </div>
                     </form>
                 </ul>
             </div>
