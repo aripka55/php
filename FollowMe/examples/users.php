@@ -6,14 +6,14 @@ require('dbconnection.php');
 
 $userid = $_SESSION['user_id'];
 
+$sql2="SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
+$result2 = $conn->query($sql);
 
-$sql="SELECT * FROM fm_users";
-$result = $conn->query($sql);
-$all_user=array();
-while ($row = $result->fetch_assoc())
-{
-        $all_user[]=$row['userid'];
-}
+//$all_user=array();
+//while ($row = $result->fetch_assoc())
+//{
+  //      $all_user[]=$row['userid'];
+//}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
