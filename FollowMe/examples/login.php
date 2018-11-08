@@ -54,73 +54,74 @@ if (isset($_SESSION['email'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md fixed-top navbar-transparent">
-<div class="container">
-<div class="navbar-translate">
-<button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-bar"></span>
-<span class="navbar-toggler-bar"></span>
-<span class="navbar-toggler-bar"></span>
-</button>
-<a class="navbar-brand" href="https://www.creative-tim.com">Paper Kit 2</a>
-</div>
-<div class="collapse navbar-collapse" id="navbarToggler">
-<ul class="navbar-nav ml-auto">
-<li class="nav-item">
-<a href="../index.html" class="nav-link"><i class="nc-icon nc-layout-11"></i>Components</a>
-</li>
-<li class="nav-item">
-<a href="../documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-book-bookmark"></i> Documentation</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href="https://www.github.com/CreativeTimOfficial" target="_blank">
-<i class="fa fa-github"></i>
-<p class="d-lg-none">GitHub</p>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
+    <nav class="navbar navbar-expand-md fixed-top navbar-transparent">
+        <div class="container">
+            <div class="navbar-translate">
+                <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar"></span>
+                    <span class="navbar-toggler-bar"></span>
+                    <span class="navbar-toggler-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://www.creative-tim.com">Paper Kit 2</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link"><i class="nc-icon nc-layout-11"></i>Components</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-book-bookmark"></i> Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href="https://www.github.com/CreativeTimOfficial" target="_blank">
+                            <i class="fa fa-github"></i>
+                            <p class="d-lg-none">GitHub</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<div class="wrapper">
-<div class="page-header" style="background-image: url('../assets/img/login-image.jpg');">
-<div class="filter"></div>
-<div class="container">
-<div class="row">
-<div class="col-lg-4 ml-auto mr-auto">
-<div class="card card-register">
-<h3 class="title">Login</h3>
-<div class="social-line text-center">
-<a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
-<i class="fa fa-facebook-square"></i>
-</a>
-<a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
-<i class="fa fa-google-plus"></i>
-</a>
-<a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
-<i class="fa fa-twitter"></i>
-</a>
-</div>
-<form class="register-form" method="post" action="">
-<label>Email</label>
-<input type="text" class="form-control" name="email" placeholder="Email">
-<label>Password</label>
-<input type="password" class="form-control" name="password" placeholder="Password">
-<button class="btn btn-danger btn-block btn-round">Login</button>
-</form>
-<div class="forgot">
-<a href="#" class="btn btn-link btn-danger">Forgot password?</a>
-</div>
-</div>
-</div>
-</div>
-<div class="footer register-footer text-center">
-<h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Choas</h6>
-</div>
-</div>
-</div>
-</div>
+    <div class="wrapper">
+        <div class="page-header" style="background-image: url('../assets/img/login-image.jpg');">
+            <div class="filter">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 ml-auto mr-auto">
+                        <div class="card card-register">
+                            <h3 class="title">Login</h3>
+                            <div class="social-line text-center">
+                                <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
+                                    <i class="fa fa-facebook-square"></i>
+                                </a>
+                                <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                                <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </div>
+                            <form class="register-form" method="post" action="">
+                                <label>Email</label>
+                                <input type="text" class="form-control" name="email" placeholder="Email">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                                <button class="btn btn-danger btn-block btn-round">Login</button>
+                            </form>
+                            <div class="forgot">
+                                <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer register-footer text-center">
+                    <h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Choas</h6>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 <!-- Core JS Files -->
