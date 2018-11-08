@@ -1,8 +1,8 @@
 <?php
 if (!isset($_SESSION)) {
-  session_start();
+  session_start(); 
 }
-require('dbconnection.php');
+require('dbconnection.php'); // Connecting to the Database
 
 $userid = $_SESSION['user_id'];
 
