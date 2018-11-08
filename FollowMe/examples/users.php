@@ -16,12 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_POST["$user_id"] == "yes") {
             $follow_id = $row2['user_id'];
             echo $follow_id . "=" . $userid;
-            $sql2 = "INSERT IGNORE INTO fm_followers(fm_user_id, following_user_id) VALUES ('$user_id','$follow_id')";
+            $sql2 = "INSERT IGNORE INTO fm_followers(user_id, following_user_id) VALUES ('$user_id','$follow_id')";
             $conn->query($sql2);
         }
         else {
             $follow_id = $row2['user_id'];
-            $sql2 = "DELETE FROM fm_followers WHERE fm_user_id = '$userid' AND following_user_id = '$follow_id'";
+            $sql2 = "DELETE FROM fm_followers WHERE user_id = '$userid' AND following_user_id = '$follow_id'";
             $conn->query($sql2);
         }
     }
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $sql = "SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
 $result = $conn->query($sql);
 
-$sql = "SELECT following_user_id FROM fm_followers WHERE fm_user_id = '$userid'";
+$sql = "SELECT following_user_id FROM fm_followers WHERE user_id = '$userid'";
 
 $follow_result = $conn->query($sql);
 
