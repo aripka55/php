@@ -1,31 +1,29 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+session_start();
 require('dbconnection.php');
 
-if (isset($_POST['email'])){
+if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT email, password, first_name, last_name, description, title, image_url FROM fm_users where email = '$email'";
+    $sql = "SELECT user_id, email, password, first_name, last_name, image_url, title, description FROM fm_users WHERE email = '$email'";
+
     $result = $conn->query($sql);
 
-    while ($row = $result->fetch_assoc()){
-        if ($email == $row['email'] && password_verify($password, $row['password']) ){
-            //set variables from profile.php page
+    while ($row = $result->fetch_assoc()) {
+        if ($email == $row['email'] && password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['email'] = $email;
-            $_SESSION['img_url'] = $row['image_url'];
             $_SESSION['first_name'] = $row['first_name'];
             $_SESSION['last_name'] = $row['last_name'];
+            $_SESSION['image_url'] = $row['image_url'];
             $_SESSION['title'] = $row['title'];
             $_SESSION['description'] = $row['description'];
         }
     }
-}
-if (isset($_SESSION['email'])) {
-    header('Location: profile.php');
+    if (isset($_SESSION['email'])) {
+        header('Location: profile.php');
+    }
 }
 ?>
 
@@ -36,15 +34,17 @@ if (isset($_SESSION['email'])) {
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Login Page by Andrew Ripka</title>
+
+    <title>Login Page by Andrew</title>
+
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-    <!-- CSS for Demo Purpose, don't include it in your project -->
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
 
     <!-- Fonts and icons -->
@@ -53,8 +53,14 @@ if (isset($_SESSION['email'])) {
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
 </head>
 
+<?php
+if (isset($_POST['logout'])) {
+    unset($_SESSION['email']);
+}
+?>
+
 <body>
-    <nav class="navbar navbar-expand-md fixed-top navbar-transparent">
+    <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
         <div class="container">
             <div class="navbar-translate">
                 <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,20 +68,25 @@ if (isset($_SESSION['email'])) {
                     <span class="navbar-toggler-bar"></span>
                     <span class="navbar-toggler-bar"></span>
                 </button>
-                <a class="navbar-brand" href="https://www.creative-tim.com">Paper Kit 2</a>
+                <a class="navbar-brand" href="#">Users</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="../index.html" class="nav-link"><i class="nc-icon nc-layout-11"></i>Components</a>
+                        <a href="login.php" class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-book-bookmark"></i> Documentation</a>
+                        <a href="profile.php" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href="https://www.github.com/CreativeTimOfficial" target="_blank">
-                            <i class="fa fa-github"></i>
-                            <p class="d-lg-none">GitHub</p>
+                        <a href="editprofile.php" class="nav-link">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="users.php" class="nav-link">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <?php echo $_SESSION['email']; ?>
                         </a>
                     </li>
                 </ul>
@@ -84,7 +95,7 @@ if (isset($_SESSION['email'])) {
     </nav>
 
     <div class="wrapper">
-        <div class="page-header" style="background-image: url('../assets/img/login-image.jpg');">
+        <div class="page-header" style="background-image: url('../assets/img/temmie.jpg');">
             <div class="filter">
             </div>
             <div class="container">
@@ -105,9 +116,9 @@ if (isset($_SESSION['email'])) {
                             </div>
                             <form class="register-form" method="post" action="">
                                 <label>Email</label>
-                                <input type="text" class="form-control" name="email" placeholder="Email">
+                                <input type="text" name="email" class="form-control" placeholder="Email">
                                 <label>Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password">
                                 <button class="btn btn-danger btn-block btn-round">Login</button>
                             </form>
                             <div class="forgot">
@@ -115,9 +126,9 @@ if (isset($_SESSION['email'])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                 </div>
                 <div class="footer register-footer text-center">
-                    <h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Choas</h6>
+                    <h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tem</h6>
                 </div>
             </div>
         </div>
@@ -130,6 +141,7 @@ if (isset($_SESSION['email'])) {
 <script src="../assets/js/tether.min.js" type="text/javascript"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-<!-- Paper Kit Initialization snd functons -->
+<!--  Paper Kit Initialization snd functons -->
 <script src="../assets/js/paper-kit.js?v=2.0.1"></script>
+
 </html>
