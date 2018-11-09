@@ -1,14 +1,14 @@
 <?php
 if (!isset($_SESSION)) {
-session_start();
+    session_start();
 }
 require('dbconnection.php');
 
 if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['update-btn']) && $_POST['first_name'] != null && $_POST['last_name'] != null && $_POST['title'] != null && $_POST['description'] != null) {
         $email = $_SESSION['email'];
-        $firstname = $_POST['first_name'];
-        $lastname = $_POST['last_name'];
+        $firstName = $_POST['first_name'];
+        $lastName = $_POST['last_name'];
         $title = $_POST['title'];
         $description = $_POST['description'];
 
@@ -37,16 +37,16 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Edit Profile Page</title>
+    <title>Edit Profile Page by Andrew</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-    <!-- CSS for Demo Purpose, don't include it in your project -->
+    <!--  CSS for Demo Purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
 
     <!-- Fonts and icons -->
@@ -64,7 +64,7 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                     <span class="navbar-toggler-bar"></span>
                     <span class="navbar-toggler-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Users</a>
+                <a class="navbar-brand" href="#">Follow Me</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
@@ -79,11 +79,6 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                     </li>
                     <li class="nav-item">
                         <a href="users.php" class="nav-link">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <?php echo $_SESSION['email']; ?>
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -109,8 +104,8 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="nc-icon nc-single-02"></i>
-                                        </span>
-                                        <input type="text" name="first_name" class="form-control" placeholder="First Name" value="<?php echo $_SESSION['first_name'] ?>">
+                                      </span>
+                                      <input type="text" name="first_name" class="form-control" placeholder="First Name" value="<?php echo $_SESSION['first_name'] ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -143,7 +138,6 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-
     <footer class="footer section-dark">
         <div class="container">
             <div class="row">
@@ -172,7 +166,7 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-<!-- Paper Kit Initialization snd functons -->
+<!--  Paper Kit Initialization snd functons -->
 <script src="../assets/js/paper-kit.js?v=2.1.0"></script>
 
 </html>
