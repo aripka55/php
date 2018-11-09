@@ -3,6 +3,20 @@ if (!isset($_SESSION)) {
     session_start();
 }
 require('dbconnection.php');
+$userid = $_SESSION['user_id'];
+
+$sql = "SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
+$result = $conn->query($sql);
+
+$follow_sql = "SELECT following_user_id FROM fm_follows WHERE user_id = '$userid'";
+$follow_result = $conn->query($follow_sql);
+
+// $followU_sql = "SELECT user_id FROM fm_follows WHERE following_user_id = '$userid'";
+// $followU_result = $conn->query($followU_sql);
+
+while($row = $follow_result->fetch_row()) {
+    $followingUserids[] = $row[0];
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,16 +27,16 @@ require('dbconnection.php');
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Profile Page</title>
+    <title>Profile Page by Andrew</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- Bootstrap core CSS     -->
+    <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-    <!--  CSS for Demo Purpose, don't include it in your project  -->
+    <!--  CSS for Demo Purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
 
     <!-- Fonts and icons -->
@@ -30,8 +44,8 @@ require('dbconnection.php');
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
 </head>
-
 <body>
+
     <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
         <div class="container">
             <div class="navbar-translate">
@@ -75,7 +89,7 @@ require('dbconnection.php');
             <div class="container">
                 <div class="owner">
                     <div class="avatar">
-                        <img src="<?php echo $_SESSION['img_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                        <img src="<?php echo $_SESSION['image_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                     </div>
                     <div class="name">
                         <h4 class="title"><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?><br /></h4>
@@ -94,7 +108,7 @@ require('dbconnection.php');
                     <div class="nav-tabs-wrapper">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#follows" role="tab">Follows</a>
+                                <a class="nav-link active" data-toggle="tab" href="#follows" role="tab">Followers</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#following" role="tab">Following</a>
@@ -102,57 +116,60 @@ require('dbconnection.php');
                         </ul>
                     </div>
                 </div>
-
                 <!-- Tab panes -->
                 <div class="tab-content following">
                     <div class="tab-pane active" id="follows" role="tabpanel">
                         <div class="row">
                             <div class="col-md-6 ml-auto mr-auto">
                                 <ul class="list-unstyled follows">
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-md-2 col-sm-2 ml-auto mr-auto">
-                                                <img src="../assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                                            </div>
-                                            <div class="col-md-7 col-sm-4  ml-auto mr-auto">
-                                                <h6>Flume<br/><small>Musical Producer</small></h6>
-                                            </div>
-                                            <div class="col-md-3 col-sm-2  ml-auto mr-auto">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <hr />
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-md-2 ml-auto mr-auto ">
-                                                <img src="../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                                            </div>
-                                            <div class="col-md-7 col-sm-4">
-                                                <h6>Banks<br /><small>Singer</small></h6>
-                                            </div>
-                                            <div class="col-md-3 col-sm-2">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <?php
+                                        /*while($row = $result->fetch_assoc()) {
+                                            $following_userid = $row['following_user_id'];
+                        
+                                            if (in_array($following_userid, $user_ids)) {
+                                                echo "<li>";
+                                                echo "<div class=\"row\">";
+                                                echo "<div class=\"col-md-2 col-sm-2 ml-auto mr-0\">";
+                                                echo "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
+                                                echo "</div>";
+                                                echo "<div class=\"col-md-7 col-sm-4  ml-0 mr-0\">";
+                                                echo "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                                echo "</li>";
+                                                echo "<hr />";
+                                            }
+                                        } */
+                                    ?>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane text-center" id="following" role="tabpanel">
-                        <h3 class="text-muted">Not following anyone yet :(</h3>
-                        <button class="btn btn-warning btn-round">Find artists</button>
+                        <div class="row">
+                            <div class="col-md-6 ml-auto mr-auto">
+                                <ul class="list-unstyled follows">
+                                    <?php
+                                        while($row = $result->fetch_assoc()) {
+                                            $userid = $row['user_id'];
+                                            if (in_array($user_id, $followingUserids)) {
+                                                echo "<li>";
+                                                echo "<div class=\"row\">";
+                                                echo "<div class=\"col-md-2 col-sm-2 ml-auto mr-0\">";
+                                                echo "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
+                                                echo "</div>";
+                                                echo "<div class=\"col-md-7 col-sm-4  ml-0 mr-0\">";
+                                                echo "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                                echo "</li>";
+                                                echo "<hr />";
+                                            }
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
