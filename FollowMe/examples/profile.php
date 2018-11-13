@@ -13,7 +13,7 @@ $sql2 = "SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
 $result2 = $conn->query($sql2);
 
 // People that are following you 
-$sql3 = "SELECT fm_user_id FROM fm_followers WHERE following_user_id = '$userid'";
+$sql3 = "SELECT user_id FROM fm_followers WHERE following_user_id = '$userid'";
 
 $followprofile = $conn->query($sql3);
 
