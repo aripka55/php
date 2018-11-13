@@ -54,15 +54,17 @@ $result = $conn->query($sql);
                         <li class="nav-item">
                             <a href="login.php" class="nav-link">Login</a>
                         </li>
-                 <li class="nav-item">
-                     <a href="follows.php" class="nav-link">Follow Users</a>
-                 </li>
+                 
                  <li class="nav-item">
                      <a href="profile.php" class="nav-link">Profile</a>
                  </li>
                  <li class="nav-item">
                     <a href="editprofile.php" class="nav-link">Edit Profile</a>
                 </li>
+                <li class="nav-item">
+                     <a href="users.php" class="nav-link">Users</a>
+                 </li>
+                 
                     </ul>
                 </div>
                 </div>
