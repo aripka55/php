@@ -11,7 +11,7 @@ $result2 = $conn->query($sql2);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     while ($row2 = $result2->fetch_assoc()) {
-        $userId = $row2['user_id'];
+        $userid = $row2['user_id'];
         if ($_POST["$userId"] == "yes") {
             $follow_id = $row2['user_id'];
             echo $follow_id . "=" . $userid;
