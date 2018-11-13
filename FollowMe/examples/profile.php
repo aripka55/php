@@ -73,29 +73,23 @@ $result = $conn->query($sql);
 
     <div class="wrapper">
         <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
-                        <div class="filter"></div>
-                </div>
+            <div class="filter">
+            </div>       
+        </div>
         <div class="section profile-content">
             <div class="container">
                 <div class="owner">
                     <div class="avatar">
-
                         <img src="<?php echo $_SESSION['image_url']; ?>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-
                     </div>
                     <div class="name">
-
                         <h4 class="title"><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name']; ?><br /></h4>
-
-                                                <h6 class="description"><?php echo $_SESSION['title']; ?></h6>
-
+                        <h6 class="description"><?php echo $_SESSION['title']; ?></h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 ml-auto mr-auto text-center">
-
                         <p><?php echo $_SESSION['description']; ?></p>
-
                         <br />
                         <btn class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Settings</btn>
                     </div>
@@ -134,14 +128,14 @@ $result = $conn->query($sql);
 
                                     if (in_array($follower_userid, $user_ids)) {
                                       echo "<li>";
-                                      echo      "<div class=\"row\">";
-                                      echo              "<div class=\"col-md-2 col-sm-2 ml-auto mr-0\">";
-                                      echo                      "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
-                                      echo              "</div>";
-                                      echo              "<div class=\"col-md-7 col-sm-4  ml-0 mr-0\">";
-                                      echo                      "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
-                                      echo              "</div>";
-                                      echo      "</div>";
+                                      echo "<div class=\"row\">";
+                                      echo "<div class=\"col-md-2 col-sm-2 ml-auto mr-0\">";
+                                      echo "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
+                                      echo "</div>";
+                                      echo "<div class=\"col-md-7 col-sm-4  ml-0 mr-0\">";
+                                      echo "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                                      echo "</div>";
+                                      echo "</div>";
                                       echo "</li>";
                                       echo "<hr />";
                                     }
@@ -174,14 +168,14 @@ $result = $conn->query($sql);
 
                                 if (in_array($user_id, $following_user_id)) {
                                   echo "<li>";
-                                  echo  "<div class=\"row\">";
-                                  echo          "<div class=\"col-md-2 col-sm-2 ml-auto mr-0\">";
-                                  echo                  "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
-                                  echo          "</div>";
-                                  echo          "<div class=\"col-md-7 col-sm-4  ml-0 mr-0\">";
-                                  echo                  "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
-                                  echo          "</div>";
-                                  echo  "</div>";
+                                  echo "<div class=\"row\">";
+                                  echo "<div class=\"col-md-2 col-sm-2 ml-auto mr-0\">";
+                                  echo "<img src=" . $row['image_url'] . " alt=\"Circle Image\" class=\"img-circle img-no-padding img-responsive\">";
+                                  echo "</div>";
+                                  echo "<div class=\"col-md-7 col-sm-4  ml-0 mr-0\">";
+                                  echo "<h6>" . $row['first_name'] . " " . $row['last_name'] . "<br/><small>" . $row['title'] . "</small></h6>";
+                                  echo "</div>";
+                                  echo "</div>";
                                   echo "</li>";
                                   echo "<hr />";
                                 }
