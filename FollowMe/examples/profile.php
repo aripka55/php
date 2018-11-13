@@ -160,7 +160,7 @@ $result = $conn->query($sql);
                               $sql = "SELECT user_id, first_name, last_name, title, image_url FROM fm_users";
                               $result = $conn->query($sql);
 
-                              $following_sql = "SELECT following_user_id FROM fm_follows WHERE user_id = '$userid'";
+                              $following_sql = "SELECT following_user_id FROM fm_followers WHERE user_id = '$userid'";
                               $following_result = $conn->query($following_sql);
 
                               while($row = $following_result->fetch_row()) {
