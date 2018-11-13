@@ -21,7 +21,6 @@ while($row = $followprofile->fetch_row()) {
 $follows_me[] = $row[0];
 }
 
-
 // People that you are following
 $sql4 = "SELECT following_user_id FROM fm_followers WHERE fm_user_id = '$userid'";
 
@@ -43,7 +42,7 @@ $following_user_id[] = $row1[0];
 <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Profile Page</title>
+<title>Profile Page by Andrew</title>
 
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <meta name="viewport" content="width=device-width" />
