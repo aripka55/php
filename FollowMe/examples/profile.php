@@ -15,9 +15,9 @@ $result2 = $conn->query($sql2);
 // People that are following you 
 $sql3 = "SELECT user_id FROM fm_followers WHERE following_user_id = '$userid'";
 
-$followprofile = $conn->query($sql3);
+$followingprofile = $conn->query($sql3);
 
-while($row = $followprofile->fetch_row()) {
+while($row = $followingprofile->fetch_row()) {
 $follows_me[] = $row[0];
 }
 
