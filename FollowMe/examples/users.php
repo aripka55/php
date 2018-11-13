@@ -11,7 +11,7 @@ $result2 = $conn->query($sql2);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     while ($row2 = $result2->fetch_assoc()) {
-        $userid = $row2['user_id'];
+        $userId = $row2['user_id'];
         if ($_POST["$userId"] == "yes") {
             $follow_id = $row2['user_id'];
             echo $follow_id . "=" . $userid;
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         else {
             $follow_id = $row2['user_id'];
-            $sql2 = "DELETE FROM fm_followers WHERE user_id = '$user_id' AND following_user_id = '$follow_id'";
+            $sql2 = "DELETE FROM fm_followers WHERE user_id = '$userid' AND following_user_id = '$follow_id'";
             $conn->query($sql2);
         }
         header('location: profile.php');
