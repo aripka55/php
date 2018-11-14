@@ -125,6 +125,13 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </span>
                                 <input type="text" name="title" class="form-control" placeholder="Title" value="<?php echo $_SESSION['title'] ?>">
                             </div>
+                            <label>Image URL:</label> <!-- latest addition -->
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="nc-icon nc-tag-content"></i>
+                                </span>
+                                <input type="file" name="upload" class="form-control" placeholder="Image URL" value="<?php echo $_SESSION['image_url'] ?>">
+                            </div>
                             <label>Description</label>
                             <textarea class="form-control" name="description" rows="4" placeholder="Tell everyone a little about you..."><?php echo $_SESSION['description'] ?></textarea>
                             <div class="row">
