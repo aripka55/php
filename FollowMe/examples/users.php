@@ -155,7 +155,7 @@ while($row = $follow_result->fetch_row()) {
                                                 ?>
             <div class="row">
                                 <div class="col-md-4 ml-auto mr-auto text-center">
-                                    <button class="btn btn-danger btn-lg btn-fill" name="update-btn">Update</button>
+                                    <button class="btn btn-danger btn-lg btn-fill" name="update-btn">Sumbit</button>
                                 </div>
                             </div>
           </form>
