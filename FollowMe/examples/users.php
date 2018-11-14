@@ -153,7 +153,11 @@ while($row = $follow_result->fetch_row()) {
               }
             }
                                                 ?>
-            <input type="submit">
+            <div class="row">
+                                <div class="col-md-4 ml-auto mr-auto text-center">
+                                    <button class="btn btn-danger btn-lg btn-fill" name="update-btn">Update</button>
+                                </div>
+                            </div>
           </form>
                                         </ul>
                                 </div>
