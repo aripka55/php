@@ -1,60 +1,78 @@
 <?php
 if (!isset($_SESSION)) {
-    session_start();
+  session_start();
 }
 require('dbconnection.php');
 
+  if (!file_exists("../assets/img/faces/" . $_SESSION['user_id'])) {
+
+    mkdir("../assets/img/faces/" . $_SESSION['user_id'], 0777, true);
+  }
+
+  $target_dir = "../assets/img/faces/" . $_SESSION['user_id'] . "/";
+  $target_file = $target_dir . basename($_FILES['upload']['name']);
+  $uploadVerify = true;
+
 if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['update-btn']) && $_POST['first_name'] != null && $_POST['last_name'] != null && $_POST['title'] != null && $_POST['description'] != null) {
-        $email = $_SESSION['email'];
-        $firstName = $_POST['first_name'];
-        $lastName = $_POST['last_name'];
-        $title = $_POST['title'];
-        $description = $_POST['description'];
 
-        $sql = "UPDATE fm_users SET first_name = '$firstname', last_name = '$lastname', title = '$title', description = '$description' WHERE email = '$email'";
-        $conn->query($sql);
+if (isset($_POST['update-btn']) && $_POST['first_name'] != null && $_POST['last_name'] != null && $_POST['title'] != null && $_POST['description'] != null) {
 
-        $sql2 = "SELECT * FROM fm_users where email = '$email'";
-        $result = $conn->query($sql2);
+    $_POST['image_url'] = $target_file;
 
-        while ($row = $result->fetch_assoc()) {
-            $_SESSION['first_name'] = $row['first_name'];
-            $_SESSION['last_name'] = $row['last_name'];
-            $_SESSION['title'] = $row['title'];
-            $_SESSION['description'] = $row['description'];
-        }
-        header('Location: profile.php');
+    $email = $_SESSION['email'];
+    $firstname = $_POST['first_name'];
+    $lastname = $_POST['last_name'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $image = $_POST['image_url'];
+
+    $sql = "UPDATE fm_users SET first_name = '$firstname', last_name = '$lastname', image_url = '$image', title = '$title', description = '$description' WHERE email = '$email'";
+    $conn->query($sql);
+
+    $sql2 = "SELECT * FROM fm_users where email = '$email'";
+    $result = $conn->query($sql2);
+
+    while ($row = $result->fetch_assoc()) {
+      $_SESSION['first_name'] = $row['first_name'];
+      $_SESSION['last_name'] = $row['last_name'];
+      $_SESSION['image_url'] = $row['image_url']; 
+      $_SESSION['title'] = $row['title'];
+      $_SESSION['description'] = $row['description'];
     }
+      header('Location: profile.php');
+  }
+  if ($uploadVerify) {
+  move_uploaded_file($_FILES['upload']['tmp_name'], $target_file);
+  }
 }
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Edit Profile Page by Andrew</title>
+        <title>Edit Profile Page by Andrew</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- Bootstrap core CSS     -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+        <!-- Bootstrap core CSS     -->
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-    <!--  CSS for Demo Purpose, don't include it in your project -->
-    <link href="../assets/css/demo.css" rel="stylesheet" />
+        <!--  CSS for Demo Purpose, don't include it in your project     -->
+        <link href="../assets/css/demo.css" rel="stylesheet" />
 
-    <!-- Fonts and icons -->
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
+    <!--     Fonts and icons     -->
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+        <link href="../assets/css/nucleo-icons.css" rel="stylesheet">
+
 </head>
-
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
         <div class="container">
@@ -64,7 +82,7 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                     <span class="navbar-toggler-bar"></span>
                     <span class="navbar-toggler-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Follow Me</a>
+                <a class="navbar-brand" href="#">Users</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
@@ -80,6 +98,11 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                     <li class="nav-item">
                         <a href="users.php" class="nav-link">Users</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <?php echo $_SESSION['email']; ?>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -87,51 +110,55 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="wrapper">
         <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
-            <div class="filter">
-            </div>
-        </div>
+                               <div class="filter"></div>
+                    </div>
+
         <div class="section landing-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
-                        <!-- ml-auto and mr-auto automatically move the div ogjects -->
+                      <!-- ml-auto and mr-auto automatically move the div ogjects -->
                         <h2 class="text-center">Edit Profile</h2>
-                        <form class="contact-form" action="" method="post">
+                        <form class="contact-form" action="" method="post" enctype="multipart/form-data">
                             <div class="row">
-                                <!-- col-md-6 designates the amount of spaces used in the 12 space grid that is used -->
+                              <!-- col-md-6 designates the amount of spaces used in the 12 space grid that is used -->
                                 <div class="col-md-6">
                                     <label>First Name:</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="nc-icon nc-single-02"></i>
+                                      <span class="input-group-addon">
+                                          <i class="nc-icon nc-single-02"></i>
                                       </span>
                                       <input type="text" name="first_name" class="form-control" placeholder="First Name" value="<?php echo $_SESSION['first_name'] ?>">
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <label>Last Name:</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="nc-icon nc-single-02"></i>
-                                        </span>
-                                        <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="<?php echo $_SESSION['last_name'] ?>">
+                                      <span class="input-group-addon">
+                                        <i class="nc-icon nc-single-02"></i>
+                                      </span>
+                                      <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="<?php echo $_SESSION['last_name'] ?>">
                                     </div>
                                 </div>
-                            </div> <!-- ends the first row -->
+                            </div> 
+
+                            <label>Image URL:</label> 
+                            <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="nc-icon nc-tag-content"></i>
+                              </span>
+                              <input type="file" name="upload" class="form-control" placeholder="Image URL" value="<?php echo $_SESSION['image_url'] ?>">
+                            </div>
+
                             <label>Title:</label>
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="nc-icon nc-tag-content"></i>
-                                </span>
-                                <input type="text" name="title" class="form-control" placeholder="Title" value="<?php echo $_SESSION['title'] ?>">
+                              <span class="input-group-addon">
+                                <i class="nc-icon nc-tag-content"></i>
+                              </span>
+                              <input type="text" name="title" class="form-control" placeholder="Title" value="<?php echo $_SESSION['title'] ?>">
                             </div>
-                            <label>Image URL:</label> <!-- latest addition -->
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="nc-icon nc-tag-content"></i>
-                                </span>
-                                <input type="file" name="upload" class="form-control" placeholder="Image URL" value="<?php echo $_SESSION['image_url'] ?>">
-                            </div>
+
                             <label>Description</label>
                             <textarea class="form-control" name="description" rows="4" placeholder="Tell everyone a little about you..."><?php echo $_SESSION['description'] ?></textarea>
                             <div class="row">
@@ -144,8 +171,9 @@ if (isset($_SESSION['email']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
         </div>
+
     </div>
-    <footer class="footer section-dark">
+        <footer class="footer section-dark">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
